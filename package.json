@@ -1,5 +1,5 @@
 {
-  "name": "molgenis-ui-menu",
+  "name": "@molgenis/molgenis-ui-menu",
   "version": "1.0.0",
   "description": "Molgenis menu component",
   "author": "Bart Charbon <b.charbon@umcg.nl>",
@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
+    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "watch": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --watch",
     "debug": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js -i --watch",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
