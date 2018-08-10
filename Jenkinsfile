@@ -22,7 +22,7 @@ pipeline {
       steps {
         container('node') {
           sh "yarn install"
-          sh "yarn unit"
+//          sh "yarn unit"
 //          sh "daemon --name=sauceconnect -- /usr/local/bin/sc -u ${SAUCE_CRED_USR} -k ${SAUCE_CRED_PSW}"
 //          sh "yarn e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
 //          sh "daemon --name=sauceconnect --stop"
@@ -47,7 +47,7 @@ pipeline {
         milestone 1
         container('node') {
           sh "yarn install"
-          sh "yarn unit"
+//          sh "yarn unit"
 //          sh "daemon --name=sauceconnect -- /usr/local/bin/sc -u ${SAUCE_CRED_USR} -k ${SAUCE_CRED_PSW}"
 //          sh "yarn e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
 //          sh "daemon --name=sauceconnect --stop"
