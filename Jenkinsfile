@@ -114,7 +114,6 @@ pipeline {
         sh "daemon --name=sauceconnect --stop"
       }
     }
-    // [ slackSend ]; has to be configured on the host, it is the "Slack Notification Plugin" that has to be installed
     success {
       notifySuccess()
     }
@@ -125,9 +124,9 @@ pipeline {
 }
 
 def notifySuccess() {
-  slackSend(channel: '#releases', color: '#00FF00', message: 'JS-module-build is successfully deployed on https://registry.npmjs.org: Job - <${env.BUILD_URL}|${env.JOB_NAME}> | #${env.BUILD_NUMBER}')
+  hubotSend(message: 'Build success', status:'INFO', site: 'slack-pr-app-team')
 }
 
 def notifyFailed() {
-  slackSend(channel: '#releases', color: '#FF0000', message: 'JS-module-build has failed: Job - <${env.BUILD_URL}|${env.JOB_NAME}> | #${env.BUILD_NUMBER}')
+  hubotSend(message: 'Build failed', status:'ERROR', site: 'slack-pr-app-team')
 }
