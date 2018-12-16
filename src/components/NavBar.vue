@@ -36,7 +36,7 @@
   </nav>
 </template>
 
-<script >
+<script lang="ts">
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Vue from 'vue'
