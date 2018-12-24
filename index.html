@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <title>MOLGENIS - Menu</title>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <style>
+    .nav-link.dropdown-toggle:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div id="molgenis-menu" data-molgenis-menu.menu="menu"></div>
+
+<script>
+  const menu =
+    {
+      'id': 'main',
+      'label': 'Home',
+      'href': 'main',
+      'type': 'MENU',
+      'items': [{'id': 'home', 'label': 'Home', 'href': 'home', 'type': 'PLUGIN'}, {
+        'id': 'navigator',
+        'label': 'Nav',
+        'href': 'navigator',
+        'type': 'PLUGIN'
+      }, {
+        'id': 'admin',
+        'label': 'Admin',
+        'href': 'admin',
+        'type': 'MENU',
+        'items': [{
+          'id': 'scheduledjobs',
+          'label': 'Scheduled Jobs',
+          'href': 'scheduledjobs',
+          'type': 'PLUGIN'
+        }, {
+          'id': 'usermanager',
+          'label': 'User Manager',
+          'href': 'usermanager',
+          'type': 'PLUGIN'
+        }, {
+          'id': 'permissionmanager',
+          'label': 'Permission Manager',
+          'href': 'permissionmanager',
+          'type': 'PLUGIN'
+        }, {'id': 'menumanager', 'label': 'Menu Manager', 'href': 'menumanager', 'type': 'PLUGIN'}, {
+          'id': 'thememanager',
+          'label': 'Theme Manager',
+          'href': 'thememanager',
+          'type': 'PLUGIN'
+        }, {
+          'id': 'indexmanager',
+          'label': 'Index manager',
+          'href': 'indexmanager',
+          'type': 'PLUGIN'
+        }, {'id': 'logmanager', 'label': 'Log manager', 'href': 'logmanager', 'type': 'PLUGIN'}, {
+          'id': 'settingsmanager',
+          'label': 'Settings',
+          'href': 'settingsmanager',
+          'type': 'PLUGIN'
+        }]
+      }, {
+        'id': 'dataexplorer',
+        'label': 'Data Explorer',
+        'href': 'dataexplorer?entity\u003dMutations\u0026hideselect\u003dtrue',
+        'type': 'PLUGIN'
+      }, {'id': 'catalogue', 'label': 'Catalogue', 'href': 'catalogue', 'type': 'PLUGIN'}, {
+        'id': 'dataintegration',
+        'label': 'Data Integration',
+        'href': 'dataintegration',
+        'type': 'MENU',
+        'items': [{
+          'id': 'mappingservice',
+          'label': 'Mapping Service',
+          'href': 'mappingservice',
+          'type': 'PLUGIN'
+        }, {'id': 'sortaservice', 'label': 'SORTA', 'href': 'sortaservice', 'type': 'PLUGIN'}, {
+          'id': 'tagwizard',
+          'label': 'Tag Wizard',
+          'href': 'tagwizard',
+          'type': 'PLUGIN'
+        }, {
+          'id': 'ontologymanager',
+          'label': 'Ontology manager',
+          'href': 'ontologymanager',
+          'type': 'PLUGIN'
+        }, {
+          'id': 'test',
+          'label': 'test',
+          'href': 'test',
+          'type': 'MENU',
+          'items': [{'id': 'importwizard', 'label': 'Upload', 'href': 'importwizard', 'type': 'PLUGIN'}, {
+            'id': 'plugins',
+            'label': 'Plugins',
+            'href': 'plugins',
+            'type': 'MENU',
+            'items': [{'id': 'apps', 'label': 'Apps', 'href': 'apps', 'type': 'PLUGIN'}, {
+              'id': 'questionnaires',
+              'label': 'Questionnaires',
+              'href': 'questionnaires',
+              'type': 'PLUGIN'
+            }, {'id': 'pathways', 'label': 'Pathways', 'href': 'pathways', 'type': 'PLUGIN'}, {
+              'id': 'standardsregistry',
+              'label': 'Model registry',
+              'href': 'standardsregistry',
+              'type': 'PLUGIN'
+            }, {'id': 'background', 'label': 'Background', 'href': 'background', 'type': 'PLUGIN'}, {
+              'id': 'contact',
+              'label': 'Contact',
+              'href': 'contact',
+              'type': 'PLUGIN'
+            }, {'id': 'news', 'label': 'News', 'href': 'news', 'type': 'PLUGIN'}, {
+              'id': 'references',
+              'label': 'References',
+              'href': 'references',
+              'type': 'PLUGIN'
+            }, {'id': 'scripts', 'label': 'Scripts', 'href': 'scripts', 'type': 'PLUGIN'}, {
+              'id': 'background',
+              'label': 'About',
+              'href': 'background',
+              'type': 'MENU',
+              'items': [{'id': 'feedback', 'label': 'Feedback', 'href': 'feedback', 'type': 'PLUGIN'}]
+            }, {'id': 'jobs', 'label': 'Jobs', 'href': 'jobs', 'type': 'PLUGIN'}, {
+              'id': 'gavin-app',
+              'label': 'Gavin',
+              'href': 'gavin-app',
+              'type': 'PLUGIN'
+            }, {'id': 'swagger', 'label': 'API documentation', 'href': 'swagger', 'type': 'PLUGIN'}]
+          }]
+        }]
+      }, {'id': 'useraccount', 'label': 'Account', 'href': 'useraccount', 'type': 'PLUGIN'}]
+    }
+
+  window.molgenisMenu = {
+    menu: menu,
+    topLogo: undefined,
+    topLogoMaxHeight: undefined,
+    navBarLogo: 'https://avatars3.githubusercontent.com/u/1688158?s=400&v=4',
+    helpLink: {label: 'aapje', href: 'https://www.nu.nl/'},
+    authenticated: true,
+    selectedPlugin: 'catalogue',
+    showLanguageDropdown: true,
+    logoutFunction: function () { alert('test') },
+    loginHref: '/login?url=/menu/main',
+    collapse: true,
+    googleSignIn: true
+  }
+</script>
+
+</body>
+</html>
