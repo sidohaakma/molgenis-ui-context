@@ -1,5 +1,7 @@
 # molgenis-ui-context
 
+Top level navigation menu for use in molgenis user interface.
+
 ## Project setup
 ```
 yarn install
@@ -14,6 +16,8 @@ yarn run serve
 ```
 yarn run build
 ```
+
+The default build target is set to build the navBar components as library
 
 ### Run your tests
 ```
