@@ -77,7 +77,7 @@
 import Vue from 'vue'
 import { MolgenisMenu } from '../types'
 import DropDownItems from './DropDownItems'
-// import api from '@molgenis/molgenis-api-client'
+import api from '@molgenis/molgenis-api-client'
 
 export default Vue.extend({
   name: 'NavBar',
@@ -128,19 +128,19 @@ export default Vue.extend({
     }
   },
   mounted () {
-    // if (this.molgenisMenu.authenticated) {
-    //   api.get('/api/v2/sys_Language?q=active==true').then(response => {
-    //     this.languages = response.items.map(item => {
-    //       const language = { id: item.code, label: item.name }
-    //       if (item.code === response.meta.languageCode) {
-    //         this.selectedLanguage = language.id
-    //       }
-    //       return language
-    //     })
-    //   }, error => {
-    //     console.error(error)
-    //   })
-    // }
+    if (this.molgenisMenu.authenticated) {
+      api.get('/api/v2/sys_Language?q=active==true').then(response => {
+        this.languages = response.items.map(item => {
+          const language = { id: item.code, label: item.name }
+          if (item.code === response.meta.languageCode) {
+            this.selectedLanguage = language.id
+          }
+          return language
+        })
+      }, error => {
+        console.error(error)
+      })
+    }
   }
 })
 </script>
