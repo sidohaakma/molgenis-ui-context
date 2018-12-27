@@ -5,7 +5,10 @@ module.exports = {
       'vue': 'Vue',
       'jquery': 'jQuery',
       'bootstrap': 'bootstrap',
-      'popper.js': 'Popper.js',
+      'popper.js': 'Popper.js'
     })
+  },
+  devServer: {
+    proxy: 'http://localhost:8080'
   }
 }
