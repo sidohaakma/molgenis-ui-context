@@ -75,6 +75,7 @@
     "not ie <= 8"
   ],
   "jest": {
+    "collectCoverage": true,
     "moduleFileExtensions": [
       "js",
       "jsx",
