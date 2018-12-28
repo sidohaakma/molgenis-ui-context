@@ -2,7 +2,7 @@ export default {
   get: () => Promise.resolve({
     href: '/api/v2/sys_Language',
     meta: {
-      languageCode: 'en',
+      languageCode: 'en'
     },
     items: [
       {
@@ -20,4 +20,3 @@ export default {
     ]
   })
 }
-
