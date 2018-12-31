@@ -125,7 +125,7 @@ pipeline {
               script {
                 env.RELEASE_SCOPE = input(
                   message: 'Do you want to release?',
-                  ok: 'Release'
+                  ok: 'Release',
                   parameters: [
                     choice(choices: 'patch\nminor\nmajor', description: '', name: 'RELEASE_SCOPE')
                   ]
