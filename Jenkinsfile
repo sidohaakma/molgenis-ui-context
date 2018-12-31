@@ -91,11 +91,11 @@ pipeline {
           sh "git checkout -f ${BRANCH_NAME}"
 
           sh "npm config set unsafe-perm true"
+          sh "npm config set registry ${env.NPM_REGISTRY}/:_authToken=${env.NPM_TOKEN}"
+
           sh "npm version ${RELEASE_SCOPE} -m '[ci skip] [npm-version] %s'"
 
           sh "git push --tags origin ${BRANCH_NAME}"
-
-          sh "echo //${env.NPM_REGISTRY}/:_authToken=${NPM_TOKEN} > ~/.npmrc"
 
           sh "npm publish"
           hubotSend(message: '${env.REPOSITORY} has been successfully deployed on ${env.NPM_REGISTRY}.', status: 'SUCCESS')
@@ -126,6 +126,9 @@ pipeline {
                 env.RELEASE_SCOPE = input(
                   message: 'Do you want to release?',
                   ok: 'Release'
+                  parameters: [
+                    choice(choices: 'patch\nminor\nmajor', description: '', name: 'RELEASE_SCOPE')
+                  ]
                 )
               }
             }
@@ -135,12 +138,14 @@ pipeline {
 
               sh "git checkout -f ${BRANCH_NAME}"
 
+              // setting the configuration
               sh "npm config set unsafe-perm true"
-              sh "npm version from-git -m '[ci skip] [npm-version] %s'"
+              sh "npm config set tag-version-prefix '${BRANCH_NAME}'"
+              sh "npm config set registry ${env.NPM_LOCAL_REGISTRY}/:_authToken=${env.NPM_LOCAL_TOKEN}"
+
+              sh "npm version ${RELEASE_SCOPE} -m '[ci skip] [npm-version] %s'"
 
 //              sh "git push --tags origin ${BRANCH_NAME}"
-
-              sh "echo //${env.NPM_LOCAL_REGISTRY}/:_authToken=${env.NPM_LOCAL_TOKEN} > ~/.npmrc"
 
               sh "npm --registry ${env.NPM_LOCAL_REGISTRY} publish"
               hubotSend(message: '${env.REPOSITORY} has been successfully deployed on ${env.NPM_LOCAL_REGISTRY}.', status: 'SUCCESS')
