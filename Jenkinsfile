@@ -33,8 +33,8 @@ pipeline {
       steps {
         container('node') {
           sh "yarn install"
-//          sh "yarn unit"
-//          sh "yarn e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+          sh "yarn test:unit"
+          sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
         }
       }
       post {
@@ -53,8 +53,8 @@ pipeline {
         milestone 1
         container('node') {
           sh "yarn install"
-//          sh "yarn unit"
-//          sh "yarn e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+          sh "yarn test:unit"
+          sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
         }
       }
       post {
@@ -114,8 +114,8 @@ pipeline {
           steps {
             container('node') {
               sh "yarn install"
-//          sh "yarn unit"
-//          sh "yarn e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+              sh "yarn test:unit"
+              sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
             }
           }
         }
