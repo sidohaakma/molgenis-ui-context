@@ -81,30 +81,6 @@ module.exports = {
         waitForConditionTimeout: 10000,
         waitBeforeTestStart: 5000
       }
-    },
-
-    chrome: {
-      desiredCapabilities: {
-        browserName: 'chrome',
-        javascriptEnabled: true,
-        acceptSslCerts: true
-      }
-    },
-
-    firefox: {
-      desiredCapabilities: {
-        browserName: 'firefox',
-        javascriptEnabled: true,
-        acceptSslCerts: true
-      }
-    },
-
-    safari: {
-      desiredCapabilities: {
-        browserName: 'safari',
-        javascriptEnabled: true,
-        acceptSslCerts: true
-      }
     }
   }
 }
