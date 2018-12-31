@@ -33,8 +33,8 @@ pipeline {
       steps {
         container('node') {
           sh "yarn install"
-//          sh "yarn unit"
-//          sh "yarn e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+          sh "yarn test:unit"
+          sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
         }
       }
       post {
@@ -53,8 +53,8 @@ pipeline {
         milestone 1
         container('node') {
           sh "yarn install"
-//          sh "yarn unit"
-//          sh "yarn e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+          sh "yarn test:unit"
+          sh "yarn test:e2e"
         }
       }
       post {
@@ -114,8 +114,8 @@ pipeline {
           steps {
             container('node') {
               sh "yarn install"
-//          sh "yarn unit"
-//          sh "yarn e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+              sh "yarn test:unit"
+              sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
             }
           }
         }
@@ -138,10 +138,9 @@ pipeline {
 
               sh "git checkout -f ${BRANCH_NAME}"
 
-              // setting the configuration
               sh "npm config set unsafe-perm true"
               sh "npm config set tag-version-prefix '${BRANCH_NAME}'"
-              sh "npm config set registry ${env.NPM_LOCAL_REGISTRY}/:_authToken=${env.NPM_LOCAL_TOKEN}"
+              sh "npm config set registry ${env.NPM_LOCAL_REGISTRY}:_authToken=${env.NPM_LOCAL_TOKEN}"
 
               sh "npm version ${RELEASE_SCOPE} -m '[ci skip] [npm-version] %s'"
 
