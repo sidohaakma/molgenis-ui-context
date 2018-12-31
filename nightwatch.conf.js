@@ -4,11 +4,6 @@ var packageJson = require('../../package.json')
 var defaultPauzeBeforeTestStart = 3000
 
 module.exports = {
-  src_folders: ['test/e2e/specs'],
-  output_folder: 'test/e2e/reports',
-  custom_assertions_path: ['test/e2e/custom-assertions'],
-  custom_commands_path: ['test/e2e/custom-commands'],
-
   test_settings: {
     ci_chrome: {
       launch_url: "http://ondemand.saucelabs.com:80",
