@@ -14,7 +14,7 @@ pipeline {
                     script {
                         env.TUNNEL_IDENTIFIER = sh(script: 'echo ${GIT_COMMIT}-${BUILD_NUMBER}', returnStdout: true)
                         env.GITHUB_TOKEN = sh(script: 'vault read -field=value secret/ops/token/github', returnStdout: true)
-                        env.CODECOV_TOKEN = sh(script: 'vault read -field=value secret/ops/token/codecov', returnStdout: true)
+                        env.CODECOV_TOKEN = sh(script: 'vault read -field=molgenis-ui-menu secret/ops/token/codecov', returnStdout: true)
                         env.SAUCE_CRED_USR = sh(script: 'vault read -field=username secret/ops/token/saucelabs', returnStdout: true)
                         env.SAUCE_CRED_PSW = sh(script: 'vault read -field=value secret/ops/token/saucelabs', returnStdout: true)
                         env.NPM_TOKEN = sh(script: 'vault read -field=value secret/ops/token/npm', returnStdout: true)
@@ -30,6 +30,26 @@ pipeline {
                 changeRequest()
             }
             steps {
+                container('node') {
+                    sh "yarn install"
+                    sh "yarn test:unit"
+                    sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+                }
+            }
+            post {
+                always {
+                    container('node') {
+                        sh "curl -s https://codecov.io/bash | bash -s - -c -F unit -K"
+                    }
+                }
+            }
+        }
+        stage('Install, test and build: [ chore/cli3 ]') {
+            when {
+                branch 'chore/cli3'
+            }
+            steps {
+                milestone 1
                 container('node') {
                     sh "yarn install"
                     sh "yarn test:unit"
@@ -97,7 +117,9 @@ pipeline {
                     sh "echo //${env.NPM_REGISTRY}/:_authToken=${NPM_TOKEN} > ~/.npmrc"
 
                     sh "npm publish"
-                    hubotSend(message: '${env.REPOSITORY} has been successfully deployed on ${env.NPM_REGISTRY}.', status:'SUCCESS')
+                    hubotSend(message: "${env.REPOSITORY} has been successfully deployed on ${env.NPM_REGISTRY}.", status: 'SUCCESS')
+                }
+            }
         }
     }
     post {
