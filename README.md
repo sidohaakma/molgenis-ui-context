@@ -1,87 +1,39 @@
-# MOLGENIS menu component
+# molgenis-ui-context
 
-This is the MOLGENIS menu component which is used to navigate through MOLGENIS. 
-
-## Contributing
-There are 2 ways to test and develop in components for MOLGENIS.
-
-- locally without MOLGENIS
-- locally with MOLGENIS
-
-### Test locally without a running MOLGENIS instance
-
-For local testing you can execute the following commands:
-
-```bash
-# To install the application
+## Project setup
+```
 yarn install
-
-# To run develop mode
-yarn dev
 ```
 
-It will render a local version of the core variable catalogue.
-
-#### Run unit tests
-You can run unit tests by executing this command:
-
-```bash
-# Run once
-yarn unit
-
-# Run in watch-mode
-yarn debug
+### Compiles and hot-reloads for development
+```
+yarn run serve
 ```
 
-### Test with a running MOLGENIS instance
-For local testing with a running MOLGENIS instance you have to alter the config of the app:
-
-Comment in the following block
-
-```config/index.js```
-
-```javascript
-module.exports = {
-  dev: {
-
-    // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    // Beginning of block
-    proxyTable: {
-      '/login': {
-        target: 'http://localhost:8080'
-      },
-      '/api': {
-        target: 'http://localhost:8080'
-      }
-    },
-    // End of block
+### Compiles and minifies for production
+```
+yarn run build
 ```
 
-And comment out this block in the same file.
-
-
-```javascript
-/**
- * GET and POST interceptors
- * Removes the need for a running backend during development
- */
-No mock data available
+### Run your tests
+```
+yarn run test
 ```
 
-That is it. Run a MOLGENIS instance on localhost:8080 and start the core variable catalogue with:
-
-```javascript
-yarn dev
+### Lints and fixes files
+```
+yarn run lint
 ```
 
-## Build your MOLGENIS component
-
-You can now create a working application that can be imported in MOLGENIS directly, by executing:
-
-```bash
-yarn build
+### Run your end-to-end tests
+```
+yarn run test:e2e
 ```
 
-If you submit a pull-request you can release the component by navigating to the [jenkins](https://jenkins.molgenis.org/job/molgenis/job/molgenis-ui-menu) and click on release.
+### Run your unit tests
+```
+yarn run test:unit
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
