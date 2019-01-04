@@ -6,7 +6,7 @@
     </div>
 
     <nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
-      <a v-if="navBarLogo" class="navbar-brand" :href="'/menu/main/'+menu.items[0].href">
+      <a v-if="navBarLogo" class="navbar-brand" :href="`/menu/main/${href(menu.items[0])}`">
         <img :src="navBarLogo" height="20">
       </a>
       <a v-else class="navbar-brand" href="#"></a>
@@ -20,11 +20,12 @@
         <ul class="navbar-nav mr-auto">
 
           <template v-for="item in menu.items">
-            <li v-if="item.type === 'PLUGIN' && item.id !== 'home'"
+            <li v-if="item.type === 'plugin' && item.id !== 'home'"
                 :class="['nav-item', {'active': isSelectedPlugin(item.id)}]">
 
-              <a class="nav-link" :href="'/menu/main/'+item.href">
+              <a class="nav-link" :href="`/menu/main/${href(item)}`">
                 {{ item.label }}
+              </a>
               </a>
             </li>
 
@@ -79,6 +80,8 @@
 
   import api from '@molgenis/molgenis-api-client'
 
+  import {href} from './href'
+
   export default {
     name: 'molgenis-menu',
     computed: {
@@ -116,6 +119,7 @@
       }
     },
     methods: {
+      href,
       isSelectedPlugin (plugin) {
         return plugin === this.selectedPlugin
       },
