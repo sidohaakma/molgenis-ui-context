@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Molgenis menu component",
   "author": "Bart Charbon <b.charbon@umcg.nl>",
-  "main": "dist/static/molgenis-ui-form.js",
+  "main": "dist/static/molgenis-ui-menu.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/molgenis/molgenis-ui-menu.git"
