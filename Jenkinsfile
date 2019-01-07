@@ -18,6 +18,7 @@ pipeline {
             env.SAUCE_CRED_USR = sh(script: 'vault read -field=username secret/ops/token/saucelabs', returnStdout: true)
             env.SAUCE_CRED_PSW = sh(script: 'vault read -field=value secret/ops/token/saucelabs', returnStdout: true)
             env.NPM_TOKEN = sh(script: 'vault read -field=value secret/ops/token/npm', returnStdout: true)
+            env.NPM_LOCAL_TOKEN = sh(script: 'vault read -field=value secret/ops/token/nexus', returnStdout: true)
           }
         }
         container('node') {
@@ -25,15 +26,15 @@ pipeline {
         }
       }
     }
-    stage('Install and test: [ pull request ]') {
+    stage('Build: [ pull request ]') {
       when {
         changeRequest()
       }
       steps {
         container('node') {
           sh "yarn install"
-//          sh "yarn unit"
-//          sh "yarn e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+          sh "yarn test:unit"
+          sh "yarn test:e2e --env ci_chrome,ci_ie11,ci_firefox,ci_safari"
         }
       }
       post {
@@ -44,7 +45,7 @@ pipeline {
         }
       }
     }
-    stage('Install, test and build: [ master ]') {
+    stage('Build: [ master ]') {
       when {
         branch 'master'
       }
@@ -52,8 +53,8 @@ pipeline {
         milestone 1
         container('node') {
           sh "yarn install"
-//          sh "yarn unit"
-//          sh "yarn e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+          sh "yarn test:unit"
+          sh "yarn test:e2e --env ci_chrome,ci_ie11,ci_firefox,ci_safari"
         }
       }
       post {
@@ -90,16 +91,68 @@ pipeline {
           sh "git checkout -f ${BRANCH_NAME}"
 
           sh "npm config set unsafe-perm true"
+          sh "npm config set registry ${env.NPM_REGISTRY}/:_authToken=${env.NPM_TOKEN}"
+
           sh "npm version ${RELEASE_SCOPE} -m '[ci skip] [npm-version] %s'"
 
           sh "git push --tags origin ${BRANCH_NAME}"
 
-          sh "echo //${env.NPM_REGISTRY}/:_authToken=${NPM_TOKEN} > ~/.npmrc"
-
           sh "npm publish"
-          hubotSend(message: '${env.REPOSITORY} has been successfully deployed on ${env.NPM_REGISTRY}.', status:'SUCCESS')
+          hubotSend(message: '${env.REPOSITORY} has been successfully deployed on ${env.NPM_REGISTRY}.', status: 'SUCCESS')
         }
       }
+    }
+    stage('Steps: [ feature ]') {
+      when {
+        expression { BRANCH_NAME ==~ /feature\/.*/ }
+      }
+      environment {
+        TAG = "$BRANCH_NAME-$BUILD_NUMBER".replaceAll(~/[^\w.-]/, '-').toLowerCase()
+      }
+      stages {
+        stage('Build: [ feature ]') {
+          steps {
+            container('node') {
+              sh "yarn install"
+              sh "yarn test:unit"
+              sh "yarn test:e2e --env ci_chrome,ci_ie11,ci_firefox,ci_safari"
+            }
+          }
+        }
+        stage('Release: [ feature ]') {
+          steps {
+            timeout(time: 30, unit: 'MINUTES') {
+              script {
+                env.RELEASE_SCOPE = input(
+                  message: 'Do you want to release?',
+                  ok: 'Release',
+                  parameters: [
+                    choice(choices: 'patch\nminor\nmajor', description: '', name: 'RELEASE_SCOPE')
+                  ]
+                )
+              }
+            }
+            milestone 1
+            container('node') {
+//              sh "git remote set-url origin https://${GITHUB_TOKEN}@github.com/${REPOSITORY}.git"
+
+              sh "git checkout -f ${BRANCH_NAME}"
+
+              sh "npm config set unsafe-perm true"
+              sh "npm config set tag-version-prefix '${BRANCH_NAME}'"
+              sh "npm config set registry ${env.NPM_LOCAL_REGISTRY}:_authToken=${env.NPM_LOCAL_TOKEN}"
+
+              sh "npm version ${RELEASE_SCOPE} -m '[ci skip] [npm-version] %s'"
+
+//              sh "git push --tags origin ${BRANCH_NAME}"
+
+              sh "npm --registry ${env.NPM_LOCAL_REGISTRY} publish"
+              hubotSend(message: '${env.REPOSITORY} has been successfully deployed on ${env.NPM_LOCAL_REGISTRY}.', status: 'SUCCESS')
+            }
+          }
+        }
+      }
+
     }
   }
   post {
@@ -118,9 +171,9 @@ pipeline {
 }
 
 def notifySuccess() {
-  hubotSend(message: 'Build success', status:'INFO', site: 'slack-pr-app-team')
+  hubotSend(message: 'Build success', status: 'INFO', site: 'slack-pr-app-team')
 }
 
 def notifyFailed() {
-  hubotSend(message: 'Build failed', status:'ERROR', site: 'slack-pr-app-team')
+  hubotSend(message: 'Build failed', status: 'ERROR', site: 'slack-pr-app-team')
 }
