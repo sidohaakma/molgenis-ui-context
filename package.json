@@ -10,6 +10,10 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "main": "dist/NavBar.umd.js",
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://registry.npmjs.org"
+  },
   "browser": {
     "./sfc": "src/components/NavBar.vue"
   },
