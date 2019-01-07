@@ -3,7 +3,7 @@
  * @param item the MenuItem containing id and params
  * @returns {string} the href
  */
-import { MenuItem } from '@/types'
+import { MenuItem } from './types'
 
 export const href = (item: MenuItem) => item.params ? `${item.id}?${item.params}` : item.id
 
