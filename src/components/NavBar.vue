@@ -1,8 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-light">
 
-    <a v-if="molgenisMenu.navBarLogo" class="navbar-brand"
-       :href="'/menu/main/'+ molgenisMenu.menu.items[0].href">
+    <a v-if="navBarLogo" class="navbar-brand" :href="`/menu/main/${href(menu.items[0])}`">
       <img :src="molgenisMenu.navBarLogo" height="20">
     </a>
     <a v-else class="navbar-brand" href="#"></a>
@@ -16,10 +15,10 @@
       <ul class="navbar-nav mr-auto">
 
         <template v-for="item in molgenisMenu.menu.items">
-          <li v-if="item.type === 'PLUGIN' && item.id !== 'home'" :key="item.id"
+          <li :key="item.id" v-if="item.type === 'plugin' && item.id !== 'home'"
               :class="['nav-item', {'active': isSelectedPlugin(item.id)}]">
 
-            <a class="nav-link" :href="'/menu/main/'+item.href">
+            <a class="nav-link" :href="`/menu/main/${href(item)}`">
               {{ item.label }}
             </a>
           </li>
@@ -76,6 +75,7 @@
 <script>
 import Vue from 'vue'
 import { MolgenisMenu } from '../types'
+import { href } from '../href'
 import DropDownItems from './DropDownItems'
 import api from '@molgenis/molgenis-api-client'
 
@@ -112,6 +112,7 @@ export default Vue.extend({
     }
   },
   methods: {
+    href,
     isSelectedPlugin (plugin) {
       return plugin === this.selectedPlugin
     },

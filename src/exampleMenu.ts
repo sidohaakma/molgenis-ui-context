@@ -2,75 +2,170 @@ import { MolgenisMenu } from '@/types'
 
 const molgenisMenu: MolgenisMenu = {
   menu: {
+    type: 'menu',
     id: 'main',
     label: 'Home',
-    href: 'main',
-    type: 'MENU',
-    items: [{ id: 'home', label: 'Home', href: 'home', type: 'PLUGIN' },
+    items: [
       {
+        type: 'plugin',
+        id: 'home',
+        label: 'Home'
+      },
+      {
+        type: 'menu',
         id: 'importdata',
         label: 'Import data',
-        href: 'importdata',
-        type: 'MENU',
-        items: [{
-          id: 'one-click-importer',
-          label: 'Quick data import',
-          href: 'one-click-importer',
-          type: 'PLUGIN'
-        },
-        { id: 'importwizard', label: 'Advanced data import', href: 'importwizard', type: 'PLUGIN' }]
+        items: [
+          {
+            type: 'plugin',
+            id: 'one-click-importer',
+            label: 'Quick data import'
+          },
+          {
+            type: 'plugin',
+            id: 'importwizard',
+            label: 'Advanced data import'
+          }
+        ]
       },
-      { id: 'navigator', label: 'Navigator', href: 'navigator', type: 'PLUGIN' },
-      { id: 'dataexplorer', label: 'Data Explorer', href: 'dataexplorer', type: 'PLUGIN' },
       {
+        type: 'plugin',
+        id: 'navigator',
+        label: 'Navigator'
+      },
+      {
+        type: 'plugin',
+        id: 'dataexplorer',
+        label: 'Data Explorer',
+        params: 'selectedEntityType=sys_md_EntityType'
+      },
+      {
+        type: 'menu',
         id: 'dataintegration',
         label: 'Data Integration',
-        href: 'dataintegration',
-        type: 'MENU',
-        items: [{
-          id: 'metadata-manager',
-          label: 'Metadata Manager',
-          href: 'metadata-manager',
-          type: 'PLUGIN'
-        },
-        { id: 'mappingservice', label: 'Mapping Service', href: 'mappingservice', type: 'PLUGIN' },
-        { id: 'sorta', label: 'SORTA', href: 'sorta', type: 'PLUGIN' },
-        { id: 'tagwizard', label: 'Tag Wizard', href: 'tagwizard', type: 'PLUGIN' }]
+        items: [
+          {
+            type: 'plugin',
+            id: 'metadata-manager',
+            label: 'Metadata Manager'
+          },
+          {
+            type: 'plugin',
+            id: 'mappingservice',
+            label: 'Mapping Service'
+          },
+          {
+            type: 'plugin',
+            id: 'sorta',
+            label: 'SORTA'
+          },
+          {
+            type: 'plugin',
+            id: 'tagwizard',
+            label: 'Tag Wizard'
+          }
+        ]
       },
       {
+        type: 'menu',
         id: 'plugins',
         label: 'Plugins',
-        href: 'plugins',
-        type: 'MENU',
-        items: [{ id: 'searchAll', label: 'Search all data', href: 'searchAll', type: 'PLUGIN' },
-          { id: 'swagger', label: 'API documentation', href: 'swagger', type: 'PLUGIN' },
-          { id: 'appmanager', label: 'App manager', href: 'appmanager', type: 'PLUGIN' },
-          { id: 'feedback', label: 'Feedback', href: 'feedback', type: 'PLUGIN' },
-          { id: 'jobs', label: 'Job overview', href: 'jobs', type: 'PLUGIN' },
-          { id: 'questionnaires', label: 'Questionnaires', href: 'questionnaires', type: 'PLUGIN' },
-          { id: 'scripts', label: 'Scripts', href: 'scripts', type: 'PLUGIN' }]
+        items: [
+          {
+            type: 'plugin',
+            id: 'searchAll',
+            label: 'Search all data'
+          },
+          {
+            type: 'plugin',
+            id: 'swagger',
+            label: 'API documentation'
+          },
+          {
+            type: 'plugin',
+            id: 'appmanager',
+            label: 'App manager'
+          },
+          {
+            type: 'plugin',
+            id: 'feedback',
+            label: 'Feedback'
+          },
+          {
+            type: 'plugin',
+            id: 'jobs',
+            label: 'Job overview'
+          },
+          {
+            type: 'plugin',
+            id: 'questionnaires',
+            label: 'Questionnaires'
+          },
+          {
+            type: 'plugin',
+            id: 'scripts',
+            label: 'Scripts'
+          }
+        ]
       },
       {
+        type: 'menu',
         id: 'admin',
         label: 'Admin',
-        href: 'admin',
-        type: 'MENU',
-        items: [{ id: 'indexmanager', label: 'Index manager', href: 'indexmanager', type: 'PLUGIN' },
-          { id: 'logmanager', label: 'Log manager', href: 'logmanager', type: 'PLUGIN' },
-          { id: 'menumanager', label: 'Menu Manager', href: 'menumanager', type: 'PLUGIN' },
+        items: [
           {
-            id: 'permissionmanager',
-            label: 'Permission Manager',
-            href: 'permissionmanager',
-            type: 'PLUGIN'
+            type: 'plugin',
+            id: 'indexmanager',
+            label: 'Index manager'
           },
-          { id: 'scheduledjobs', label: 'Scheduled Jobs', href: 'scheduledjobs', type: 'PLUGIN' },
-          { id: 'settingsmanager', label: 'Settings', href: 'settingsmanager', type: 'PLUGIN' },
-          { id: 'thememanager', label: 'Theme Manager', href: 'thememanager', type: 'PLUGIN' },
-          { id: 'usermanager', label: 'User Manager', href: 'usermanager', type: 'PLUGIN' },
-          { id: 'security-ui', label: 'Security Manager', href: 'security-ui', type: 'PLUGIN' }]
+          {
+            type: 'plugin',
+            id: 'logmanager',
+            label: 'Log manager'
+          },
+          {
+            type: 'plugin',
+            id: 'menumanager',
+            label: 'Menu Manager'
+          },
+          {
+            type: 'plugin',
+            id: 'permissionmanager',
+            label: 'Permission Manager'
+          },
+          {
+            type: 'plugin',
+            id: 'scheduledjobs',
+            label: 'Scheduled Jobs'
+          },
+          {
+            type: 'plugin',
+            id: 'settingsmanager',
+            label: 'Settings'
+          },
+          {
+            type: 'plugin',
+            id: 'thememanager',
+            label: 'Theme Manager'
+          },
+          {
+            type: 'plugin',
+            id: 'usermanager',
+            label: 'User Manager'
+          },
+          {
+            type: 'plugin',
+            id: 'security-ui',
+            label: 'Security Manager'
+          }
+        ]
       },
-      { id: 'useraccount', label: 'Account', href: 'useraccount', type: 'PLUGIN' }]
+      {
+        type: 'plugin',
+        id: 'useraccount',
+        label: 'Account'
+      }
+    ]
   },
   navBarLogo: '/img/logo_molgenis_small.png',
   selectedPlugin: 'navigator',

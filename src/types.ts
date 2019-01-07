@@ -2,7 +2,7 @@ export interface MenuItem {
     id: string
     label: string
     type: string
-    href: string
+    params?: string
     items?: MenuItem[]
 }
 

@@ -1,8 +1,8 @@
 <template>
   <div :class="{'dropdown-menu': depth === 0}" :aria-labelledby="parent.id">
     <template v-for="item in items">
-      <a v-if="item.type === 'PLUGIN'" class="dropdown-item" :key="item.id"
-         :href="'/menu/' + parent.id + '/' + item.href">
+      <a :key="item.id" v-if="item.type === 'plugin'" class="dropdown-item"
+         :href="`/menu/${parent.id}/${href(item)}`">
         {{ item.label }}
       </a>
 
@@ -17,6 +17,7 @@
 </template>
 
 <script lang="ts">
+import { href } from '../href'
 import Vue from 'vue'
 
 export default Vue.extend({
@@ -35,6 +36,9 @@ export default Vue.extend({
       required: false,
       default: 0
     }
+  },
+  methods: {
+    href
   }
 })
 </script>

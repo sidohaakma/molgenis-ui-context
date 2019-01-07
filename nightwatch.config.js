@@ -1,6 +1,9 @@
 var packageJson = require('./package.json')
 
+const buildName = packageJson.name + '#PR-' + process.env.CHANGE_ID + '-build-' + process.env.BUILD_NUMBER
+
 module.exports = {
+
   test_settings: {
     ci_chrome: {
       launch_url: 'http://ondemand.saucelabs.com:80',
@@ -11,7 +14,7 @@ module.exports = {
       access_key: process.env.SAUCE_CRED_PSW,
       desiredCapabilities: {
         name: packageJson.name,
-        build: packageJson.name + '#PR-${CHANGE_ID}-build-${BUILD_NUMBER}',
+        build: buildName,
         'tunnel-identifier': process.env.TUNNEL_IDENTIFIER,
         browserName: 'chrome'
       }
@@ -25,7 +28,7 @@ module.exports = {
       access_key: process.env.SAUCE_CRED_PSW,
       desiredCapabilities: {
         name: packageJson.name,
-        build: packageJson.name + '#PR-${CHANGE_ID}-build-${BUILD_NUMBER}',
+        build: buildName,
         'tunnel-identifier': process.env.TUNNEL_IDENTIFIER,
         browserName: 'firefox'
       }
@@ -39,11 +42,11 @@ module.exports = {
       access_key: process.env.SAUCE_CRED_PSW,
       desiredCapabilities: {
         name: packageJson.name,
-        build: packageJson.name + '#PR-${CHANGE_ID}-build-${BUILD_NUMBER}',
+        build: buildName,
         'tunnel-identifier': process.env.TUNNEL_IDENTIFIER,
         browserName: 'internet explorer',
         platform: 'Windows 10',
-        version: '11.103',
+        version: '11.103'
       }
     },
     ci_safari: {
@@ -55,7 +58,7 @@ module.exports = {
       access_key: process.env.SAUCE_CRED_PSW,
       desiredCapabilities: {
         name: packageJson.name,
-        build: packageJson.name + '#PR-${CHANGE_ID}-build-${BUILD_NUMBER}',
+        build: buildName,
         'tunnel-identifier': process.env.TUNNEL_IDENTIFIER,
         browserName: 'safari'
       }
