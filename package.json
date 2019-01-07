@@ -1,7 +1,7 @@
 {
   "name": "@molgenis/molgenis-ui-context",
   "license": "LGPL-3.0+",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name navBar src/components/NavBar.vue",
@@ -99,7 +99,9 @@
     "testMatch": [
       "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
     ],
-    "transformIgnorePatterns": ["<rootDi>/node_modules/(?!@molgenis/molgenis-api-client)"],
+    "transformIgnorePatterns": [
+      "<rootDi>/node_modules/(?!@molgenis/molgenis-api-client)"
+    ],
     "testURL": "http://localhost/"
   }
 }
