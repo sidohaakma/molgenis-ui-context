@@ -50,14 +50,34 @@ const molgenisMenu: MolgenisMenu = {
             label: 'Metadata Manager'
           },
           {
-            type: 'plugin',
-            id: 'mappingservice',
-            label: 'Mapping Service'
-          },
-          {
-            type: 'plugin',
-            id: 'sorta',
-            label: 'SORTA'
+            type: 'menu',
+            id: 'submenu',
+            label: 'Submenu',
+            items: [
+              {
+                type: 'plugin',
+                id: 'sorta',
+                label: 'SORTA'
+              },
+              {
+                type: 'menu',
+                id: 'subsubmenu',
+                label: 'Sub Sub Menu',
+                items: [
+                  {
+                    type: 'plugin',
+                    id: 'background',
+                    label: 'Test',
+                    'params': ''
+                  }
+                ]
+              },
+              {
+                type: 'plugin',
+                id: 'mappingservice',
+                label: 'Mapping Service'
+              }
+            ]
           },
           {
             type: 'plugin',
