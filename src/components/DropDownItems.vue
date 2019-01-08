@@ -1,8 +1,11 @@
 <template>
   <div :class="{'dropdown-menu': depth === 0}" :aria-labelledby="parent.id">
     <template v-for="item in items">
-      <a :key="item.id" v-if="item.type === 'plugin'" class="dropdown-item"
-         :href="`/menu/${parent.id}/${href(item)}`">
+      <a v-if="item.type === 'plugin'"
+         class="dropdown-item"
+         :key="item.id"
+         :href="`/menu/${parent.id}/${href(item)}`"
+         :class="'menu-depth-'+ depth">
         {{ item.label }}
       </a>
 
@@ -42,3 +45,25 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style>
+  .menu-depth-1 {
+    padding-left: 2rem;
+  }
+
+  .menu-depth-2 {
+    padding-left: 3rem;
+  }
+
+  .menu-depth-3 {
+    padding-left: 4rem;
+  }
+
+  .menu-depth-4 {
+    padding-left: 5rem;
+  }
+
+  .menu-depth-5 {
+    padding-left: 6rem;
+  }
+</style>
