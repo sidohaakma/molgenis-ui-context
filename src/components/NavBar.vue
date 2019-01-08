@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-light">
 
-    <a v-if="navBarLogo" class="navbar-brand" :href="`/menu/main/${href(menu.items[0])}`">
+    <a v-if="molgenisMenu.navBarLogo" class="navbar-brand" :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
       <img :src="molgenisMenu.navBarLogo" height="20">
     </a>
     <a v-else class="navbar-brand" href="#"></a>
