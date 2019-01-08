@@ -7,7 +7,7 @@
       </a>
 
       <span v-else :key="item.id">
-        <h5 class="dropdown-header" :class="'menu-depth-'+depth">
+        <h5 class="dropdown-header" :class="'menu-depth-'+ depth">
           <b>{{item.label}}</b>
         </h5>
         <drop-down-items :parent="item" :items="item.items" :depth="depth + 1"/>
