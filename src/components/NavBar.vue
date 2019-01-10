@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <nav class="navbar navbar-light bg-light" :class="{ 'navbar-expand-md': !showHamburger }" ref="mgNavBar">
 
     <a v-if="molgenisMenu.navBarLogo" class="navbar-brand" :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
       <img :src="molgenisMenu.navBarLogo" height="20">
@@ -95,7 +95,10 @@ export default Vue.extend({
         display: 'inline-block',
         height: '100%',
         verticalAlign: 'middle'
-      } : undefined
+      } : undefined,
+      defaultNavBarHeight: null,
+      showHamburger: false,
+      dynamicHamburgerBreakpoint: null
     }
   },
   computed: {
@@ -126,9 +129,59 @@ export default Vue.extend({
       api.post('/plugin/useraccount/language/update?languageCode=' + this.selectedLanguage).then(() => {
         location.reload(true)
       })
+    },
+    getClientWidth () {
+      return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+    },
+    handleResize () {
+      if (this.showHamburger) {
+        if (this.getClientWidth() > this.dynamicHamburgerBreakpoint) {
+          this.showHamburger = false
+        }
+      } else {
+        const navBarElem = document.getElementsByClassName('navbar navbar-expand-md')[0]
+        const navBarScreenHeight = parseInt(window.getComputedStyle(navBarElem).getPropertyValue('height'), 10)
+        if (navBarScreenHeight > this.defaultNavBarHeight) {
+          this.dynamicHamburgerBreakpoint = this.getClientWidth()
+          this.showHamburger = true
+        }
+      }
+    },
+    /**
+     * Custom debounce method based on lodash, to save bundle size
+     *
+     * Returns a function, that, as long as it continues to be invoked, will not
+     * be triggered. The function will be called after it stops being called for
+     * N milliseconds. If `immediate` is passed, trigger the function on the
+     * leading edge, instead of the trailing.
+     */
+    debounce (func, wait, immediate) {
+      let timeout
+      return function () {
+        let context = this
+        let args = arguments
+        let later = () => {
+          timeout = null
+          if (!immediate) func.apply(context, args)
+        }
+        let callNow = immediate && !timeout
+        clearTimeout(timeout)
+        timeout = setTimeout(later, wait)
+        if (callNow) func.apply(context, args)
+      }
     }
   },
   mounted () {
+    // Calculate default navbar height as:
+    // height = fontSize + 1rem padding top + 1rem padding bottom + .5rem margin bottom + .5rem margin top
+    const links = document.getElementsByClassName('navbar navbar-expand-md')[0].getElementsByClassName('nav-link')
+    const styleObj = window.getComputedStyle(links[0])
+    const fontSizeString = styleObj.getPropertyValue('font-size')
+    const fontSize = parseInt(fontSizeString, 10)
+    this.defaultNavBarHeight = fontSize * 3 + (fontSize / 2)
+
+    window.addEventListener('resize', this.debounce(this.handleResize, 100))
+
     if (this.molgenisMenu.authenticated) {
       api.get('/api/v2/sys_Language?q=active==true').then(response => {
         this.languages = response.items.map(item => {
@@ -142,6 +195,12 @@ export default Vue.extend({
         console.error(error)
       })
     }
+  },
+  updated () {
+    this.handleResize()
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.handleResize)
   }
 })
 </script>
