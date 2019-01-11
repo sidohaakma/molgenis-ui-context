@@ -139,8 +139,7 @@ export default Vue.extend({
           this.showHamburger = false
         }
       } else {
-        const navBarElem = document.getElementsByClassName('navbar navbar-expand-md')[0]
-        const navBarScreenHeight = parseInt(window.getComputedStyle(navBarElem).getPropertyValue('height'), 10)
+        const navBarScreenHeight = this.$refs.mgNavBar.clientHeight
         if (navBarScreenHeight > this.defaultNavBarHeight) {
           this.dynamicHamburgerBreakpoint = this.getClientWidth()
           this.showHamburger = true
@@ -174,7 +173,7 @@ export default Vue.extend({
   mounted () {
     // Calculate default navbar height as:
     // height = fontSize + 1rem padding top + 1rem padding bottom + .5rem margin bottom + .5rem margin top
-    const links = document.getElementsByClassName('navbar navbar-expand-md')[0].getElementsByClassName('nav-link')
+    const links = this.$refs.mgNavBar.getElementsByClassName('nav-link')
     const styleObj = window.getComputedStyle(links[0])
     const fontSizeString = styleObj.getPropertyValue('font-size')
     const fontSize = parseInt(fontSizeString, 10)
