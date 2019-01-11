@@ -96,7 +96,7 @@ export default Vue.extend({
         height: '100%',
         verticalAlign: 'middle'
       } : undefined,
-      defaultNavBarHeight: null,
+      expectedNavBarHeight: null,
       showHamburger: false,
       dynamicHamburgerBreakpoint: null
     }
@@ -140,7 +140,7 @@ export default Vue.extend({
         }
       } else {
         const navBarScreenHeight = this.$refs.mgNavBar.clientHeight
-        if (navBarScreenHeight > this.defaultNavBarHeight) {
+        if (navBarScreenHeight > this.expectedNavBarHeight) {
           this.dynamicHamburgerBreakpoint = this.getClientWidth()
           this.showHamburger = true
         }
@@ -171,13 +171,13 @@ export default Vue.extend({
     }
   },
   mounted () {
-    // Calculate default navbar height as:
+    // Calculate the expected navbar height ( for line wrapping detection) based on fontSize height as:
     // height = fontSize + 1rem padding top + 1rem padding bottom + .5rem margin bottom + .5rem margin top
     const links = this.$refs.mgNavBar.getElementsByClassName('nav-link')
     const styleObj = window.getComputedStyle(links[0])
     const fontSizeString = styleObj.getPropertyValue('font-size')
     const fontSize = parseInt(fontSizeString, 10)
-    this.defaultNavBarHeight = fontSize * 3 + (fontSize / 2)
+    this.expectedNavBarHeight = fontSize * 3 + (fontSize / 2)
 
     window.addEventListener('resize', this.debounce(this.handleResize, 100))
 
