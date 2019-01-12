@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-light bg-light" :class="{ 'navbar-expand-md': !showHamburger }" ref="mgNavBar">
+  <nav class="navbar navbar-light bg-light" :class="{ 'navbar-expand-md': !showHamburger }" >
 
     <a v-if="molgenisMenu.navBarLogo" class="navbar-brand" :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
       <img :src="molgenisMenu.navBarLogo" height="20">
@@ -12,7 +12,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbar-content">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto " ref="mgNavBarNav">
 
         <template v-for="item in molgenisMenu.menu.items">
           <li :key="item.id" v-if="item.type === 'plugin' && item.id !== 'home'"
@@ -96,7 +96,7 @@ export default Vue.extend({
         height: '100%',
         verticalAlign: 'middle'
       } : undefined,
-      expectedNavBarHeight: null,
+      expectedNavHeight: null,
       showHamburger: false,
       dynamicHamburgerBreakpoint: null
     }
@@ -139,8 +139,8 @@ export default Vue.extend({
           this.showHamburger = false
         }
       } else {
-        const navBarScreenHeight = this.$refs.mgNavBar.clientHeight
-        if (navBarScreenHeight > this.expectedNavBarHeight) {
+        const actualNavHeight = this.$refs.mgNavBarNav.clientHeight
+        if (actualNavHeight > this.expectedNavHeight) {
           this.dynamicHamburgerBreakpoint = this.getClientWidth()
           this.showHamburger = true
         }
@@ -168,16 +168,18 @@ export default Vue.extend({
         timeout = setTimeout(later, wait)
         if (callNow) func.apply(context, args)
       }
+    },
+    getPixelValue (sourceObject, propertyName) {
+      return parseInt(sourceObject.getPropertyValue(propertyName), 10)
     }
   },
   mounted () {
-    // Calculate the expected navbar height ( for line wrapping detection) based on fontSize height as:
-    // height = fontSize + 1rem padding top + 1rem padding bottom + .5rem margin bottom + .5rem margin top
-    const links = this.$refs.mgNavBar.getElementsByClassName('nav-link')
-    const styleObj = window.getComputedStyle(links[0])
-    const fontSizeString = styleObj.getPropertyValue('font-size')
-    const fontSize = parseInt(fontSizeString, 10)
-    this.expectedNavBarHeight = fontSize * 3 + (fontSize / 2)
+    const links = this.$refs.mgNavBarNav.getElementsByClassName('nav-link')
+    const linkStyleObject = window.getComputedStyle(links[0])
+    const lineHeight = this.getPixelValue(linkStyleObject, 'line-height')
+    const paddingTop = this.getPixelValue(linkStyleObject, 'padding-top')
+    const paddingBottom= this.getPixelValue(linkStyleObject, 'padding-bottom')
+    this.expectedNavHeight = lineHeight + paddingTop + paddingBottom
 
     window.addEventListener('resize', this.debounce(this.handleResize, 100))
 
