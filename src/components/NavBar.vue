@@ -147,26 +147,27 @@ export default Vue.extend({
       }
     },
     /**
-     * Custom debounce method based on lodash, to save bundle size
+     * Custom simplified debounce method based on lodash, to save bundle size.
      *
      * Returns a function, that, as long as it continues to be invoked, will not
      * be triggered. The function will be called after it stops being called for
-     * N milliseconds. If `immediate` is passed, trigger the function on the
-     * leading edge, instead of the trailing.
+     * N milliseconds.
      */
-    debounce (func, wait, immediate) {
+    debounce (func, wait) {
       let timeout
-      return function () {
+      return () => {
         let context = this
         let args = arguments
         let later = () => {
           timeout = null
-          if (!immediate) func.apply(context, args)
+          func.apply(context, args)
         }
-        let callNow = immediate && !timeout
+        let callNow = !timeout
         clearTimeout(timeout)
         timeout = setTimeout(later, wait)
-        if (callNow) func.apply(context, args)
+        if (callNow) {
+          func.apply(context, args)
+        }
       }
     },
     getPixelValue (sourceObject, propertyName) {
