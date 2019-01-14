@@ -12,7 +12,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbar-content">
-      <ul class="navbar-nav mr-auto " ref="mgNavBarNav">
+      <ul class="navbar-nav mr-auto" ref="mgNavBarNav">
 
         <template v-for="item in molgenisMenu.menu.items">
           <li :key="item.id" v-if="item.type === 'plugin' && item.id !== 'home'"
