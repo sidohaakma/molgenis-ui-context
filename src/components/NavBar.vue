@@ -34,14 +34,14 @@
       </ul>
 
       <ul class="navbar-nav justify-content">
-        <li v-if="molgenisMenu.authenticated && languages.length > 1" class="nav-item">
+        <li v-if="molgenisMenu.authenticated && languages.length > 1 && selectedLanguage" class="nav-item">
           <form id="language-form" class="navbar-form">
-            <select class="nav-link" v-model="selectedLanguage" @change="handleLanguageSelect">
+            <select class="nav-link" v-model="selectedLanguage.id" @change="handleLanguageSelect">
               <option
                 v-for="language in languages"
                 :key="language.id"
                 :value="language.id"
-                :selected="language.id === selectedLanguage"
+                :selected="language.id === selectedLanguage.id"
               >
                 {{ language.label }}
               </option>
@@ -77,7 +77,8 @@ import Vue from 'vue'
 import { MolgenisMenu } from '../types'
 import { href } from '../href'
 import DropDownItems from './DropDownItems'
-import api from '@molgenis/molgenis-api-client'
+import languageRepository from '../repository/LanguageRepository'
+import languageService from '../service/LanguageService'
 
 export default Vue.extend({
   name: 'NavBar',
@@ -126,7 +127,7 @@ export default Vue.extend({
       document.getElementById('logout-form').submit()
     },
     handleLanguageSelect () {
-      api.post('/plugin/useraccount/language/update?languageCode=' + this.selectedLanguage).then(() => {
+      languageRepository.setSelectedLanguage(this.selectedLanguage.id).then(() => {
         location.reload(true)
       })
     },
@@ -179,22 +180,15 @@ export default Vue.extend({
     const linkStyleObject = window.getComputedStyle(links[0])
     const lineHeight = this.getPixelValue(linkStyleObject, 'line-height')
     const paddingTop = this.getPixelValue(linkStyleObject, 'padding-top')
-    const paddingBottom= this.getPixelValue(linkStyleObject, 'padding-bottom')
+    const paddingBottom = this.getPixelValue(linkStyleObject, 'padding-bottom')
     this.expectedNavHeight = lineHeight + paddingTop + paddingBottom
 
     window.addEventListener('resize', this.debounce(this.handleResize, 100))
 
     if (this.molgenisMenu.authenticated) {
-      api.get('/api/v2/sys_Language?q=active==true').then(response => {
-        this.languages = response.items.map(item => {
-          const language = { id: item.code, label: item.name }
-          if (item.code === response.meta.languageCode) {
-            this.selectedLanguage = language.id
-          }
-          return language
-        })
-      }, error => {
-        console.error(error)
+      Promise.all([languageRepository.getActivelangueges(), languageRepository.getSelectedlanguegeCode()]).then((results) => {
+        this.languages = results[0]
+        this.selectedLanguage = languageService.selectedLanguage(this.languages, results[1])
       })
     }
   },
