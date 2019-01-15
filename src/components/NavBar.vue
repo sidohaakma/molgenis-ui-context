@@ -1,12 +1,14 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-light">
 
-    <a v-if="molgenisMenu.navBarLogo" class="navbar-brand" :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
-      <img :src="molgenisMenu.navBarLogo" height="20">
+    <a v-if="molgenisMenu.navBarLogo" class="navbar-brand"
+       :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
+      <img :src="molgenisMenu.navBarLogo">
     </a>
     <a v-else class="navbar-brand" href="#"></a>
 
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content"
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+            data-target="#navbar-content"
             aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,7 +26,8 @@
           </li>
 
           <li v-else-if="item.id !== 'home'" class="nav-item dropdown" :key="item.id">
-            <a class="nav-link dropdown-toggle" :id="item.id" data-toggle="dropdown" aria-haspopup="true"
+            <a class="nav-link dropdown-toggle" :id="item.id" data-toggle="dropdown"
+               aria-haspopup="true"
                aria-expanded="false">
               {{ item.label }}
             </a>
@@ -59,7 +62,8 @@
 
         <li class="nav-item">
           <form id="logout-form" class="form-inline" method="post" action="/logout">
-            <button v-if="molgenisMenu.authenticated" id="signout-button" type="button" class="btn btn-outline-secondary"
+            <button v-if="molgenisMenu.authenticated" id="signout-button" type="button"
+                    class="btn btn-outline-secondary"
                     @click="logout">
               Sign out
             </button>
@@ -73,75 +77,76 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { MolgenisMenu } from '../types'
-import { href } from '../href'
-import DropDownItems from './DropDownItems'
-import api from '@molgenis/molgenis-api-client'
+  import Vue from 'vue'
+  import { MolgenisMenu } from '../types'
+  import { href } from '../href'
+  import DropDownItems from './DropDownItems'
+  import api from '@molgenis/molgenis-api-client'
 
-export default Vue.extend({
-  name: 'NavBar',
-  props: {
-    molgenisMenu: MolgenisMenu
-  },
-  components: {
-    DropDownItems
-  },
-  data () {
-    return {
-      selectedLanguage: null,
-      languages: [],
-      helperStyle: this.molgenisMenu.topLogo ? {
-        display: 'inline-block',
-        height: '100%',
-        verticalAlign: 'middle'
-      } : undefined
-    }
-  },
-  computed: {
-    topLogoStyle () {
-      return this.molgenisMenu.topLogo ? {
-        maxHeight: this.molgenisMenu.topLogoMaxHeight + 'px',
-        verticalAlign: 'middle'
-      } : undefined
+  export default Vue.extend({
+    name: 'NavBar',
+    props: {
+      molgenisMenu: MolgenisMenu
     },
-    topLogoVueBannerStyle () {
-      return this.molgenisMenu.topLogo ? {
-        height: this.molgenisMenu.topLogoMaxHeight + 'px'
-      } : undefined
-    }
-  },
-  methods: {
-    href,
-    isSelectedPlugin (plugin) {
-      return plugin === this.selectedPlugin
+    components: {
+      DropDownItems
     },
-    logout () {
-      if (this.logoutFunction) {
-        this.logoutFunction()
+    data () {
+      return {
+        selectedLanguage: null,
+        languages: [],
+        helperStyle: this.molgenisMenu.topLogo ? {
+          display: 'inline-block',
+          height: '100%',
+          verticalAlign: 'middle'
+        } : undefined
       }
-      document.getElementById('logout-form').submit()
     },
-    handleLanguageSelect () {
-      api.post('/plugin/useraccount/language/update?languageCode=' + this.selectedLanguage).then(() => {
-        location.reload(true)
-      })
-    }
-  },
-  mounted () {
-    if (this.molgenisMenu.authenticated) {
-      api.get('/api/v2/sys_Language?q=active==true').then(response => {
-        this.languages = response.items.map(item => {
-          const language = { id: item.code, label: item.name }
-          if (item.code === response.meta.languageCode) {
-            this.selectedLanguage = language.id
-          }
-          return language
+    computed: {
+      topLogoStyle () {
+        return this.molgenisMenu.topLogo ? {
+          maxHeight: this.molgenisMenu.topLogoMaxHeight + 'px',
+          verticalAlign: 'middle'
+        } : undefined
+      },
+      topLogoVueBannerStyle () {
+        return this.molgenisMenu.topLogo ? {
+          height: this.molgenisMenu.topLogoMaxHeight + 'px'
+        } : undefined
+      }
+    },
+    methods: {
+      href,
+      isSelectedPlugin (plugin) {
+        return plugin === this.selectedPlugin
+      },
+      logout () {
+        if (this.logoutFunction) {
+          this.logoutFunction()
+        }
+        document.getElementById('logout-form').submit()
+      },
+      handleLanguageSelect () {
+        api.post('/plugin/useraccount/language/update?languageCode=' + this.selectedLanguage).then(
+          () => {
+            location.reload(true)
+          })
+      }
+    },
+    mounted () {
+      if (this.molgenisMenu.authenticated) {
+        api.get('/api/v2/sys_Language?q=active==true').then(response => {
+          this.languages = response.items.map(item => {
+            const language = {id: item.code, label: item.name}
+            if (item.code === response.meta.languageCode) {
+              this.selectedLanguage = language.id
+            }
+            return language
+          })
+        }, error => {
+          console.error(error)
         })
-      }, error => {
-        console.error(error)
-      })
+      }
     }
-  }
-})
+  })
 </script>
