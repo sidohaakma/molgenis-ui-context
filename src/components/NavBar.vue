@@ -77,76 +77,76 @@
 </template>
 
 <script>
-  import Vue from 'vue'
-  import { MolgenisMenu } from '../types'
-  import { href } from '../href'
-  import DropDownItems from './DropDownItems'
-  import api from '@molgenis/molgenis-api-client'
+import Vue from 'vue'
+import { MolgenisMenu } from '../types'
+import { href } from '../href'
+import DropDownItems from './DropDownItems'
+import api from '@molgenis/molgenis-api-client'
 
-  export default Vue.extend({
-    name: 'NavBar',
-    props: {
-      molgenisMenu: MolgenisMenu
-    },
-    components: {
-      DropDownItems
-    },
-    data () {
-      return {
-        selectedLanguage: null,
-        languages: [],
-        helperStyle: this.molgenisMenu.topLogo ? {
-          display: 'inline-block',
-          height: '100%',
-          verticalAlign: 'middle'
-        } : undefined
-      }
-    },
-    computed: {
-      topLogoStyle () {
-        return this.molgenisMenu.topLogo ? {
-          maxHeight: this.molgenisMenu.topLogoMaxHeight + 'px',
-          verticalAlign: 'middle'
-        } : undefined
-      },
-      topLogoVueBannerStyle () {
-        return this.molgenisMenu.topLogo ? {
-          height: this.molgenisMenu.topLogoMaxHeight + 'px'
-        } : undefined
-      }
-    },
-    methods: {
-      href,
-      isSelectedPlugin (plugin) {
-        return plugin === this.selectedPlugin
-      },
-      logout () {
-        if (this.logoutFunction) {
-          this.logoutFunction()
-        }
-        document.getElementById('logout-form').submit()
-      },
-      handleLanguageSelect () {
-        api.post('/plugin/useraccount/language/update?languageCode=' + this.selectedLanguage).then(
-          () => {
-            location.reload(true)
-          })
-      }
-    },
-    mounted () {
-      if (this.molgenisMenu.authenticated) {
-        api.get('/api/v2/sys_Language?q=active==true').then(response => {
-          this.languages = response.items.map(item => {
-            const language = {id: item.code, label: item.name}
-            if (item.code === response.meta.languageCode) {
-              this.selectedLanguage = language.id
-            }
-            return language
-          })
-        }, error => {
-          console.error(error)
-        })
-      }
+export default Vue.extend({
+  name: 'NavBar',
+  props: {
+    molgenisMenu: MolgenisMenu
+  },
+  components: {
+    DropDownItems
+  },
+  data () {
+    return {
+      selectedLanguage: null,
+      languages: [],
+      helperStyle: this.molgenisMenu.topLogo ? {
+        display: 'inline-block',
+        height: '100%',
+        verticalAlign: 'middle'
+      } : undefined
     }
-  })
+  },
+  computed: {
+    topLogoStyle () {
+      return this.molgenisMenu.topLogo ? {
+        maxHeight: this.molgenisMenu.topLogoMaxHeight + 'px',
+        verticalAlign: 'middle'
+      } : undefined
+    },
+    topLogoVueBannerStyle () {
+      return this.molgenisMenu.topLogo ? {
+        height: this.molgenisMenu.topLogoMaxHeight + 'px'
+      } : undefined
+    }
+  },
+  methods: {
+    href,
+    isSelectedPlugin (plugin) {
+      return plugin === this.selectedPlugin
+    },
+    logout () {
+      if (this.logoutFunction) {
+        this.logoutFunction()
+      }
+      document.getElementById('logout-form').submit()
+    },
+    handleLanguageSelect () {
+      api.post('/plugin/useraccount/language/update?languageCode=' + this.selectedLanguage).then(
+        () => {
+          location.reload(true)
+        })
+    }
+  },
+  mounted () {
+    if (this.molgenisMenu.authenticated) {
+      api.get('/api/v2/sys_Language?q=active==true').then(response => {
+        this.languages = response.items.map(item => {
+          const language = { id: item.code, label: item.name }
+          if (item.code === response.meta.languageCode) {
+            this.selectedLanguage = language.id
+          }
+          return language
+        })
+      }, error => {
+        console.error(error)
+      })
+    }
+  }
+})
 </script>
