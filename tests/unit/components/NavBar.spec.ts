@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
-import NavBar from '@/components/NavBar.vue'
-import molgenisMenu from '@/exampleMenu'
+import NavBar from '../../../src/components/NavBar.vue'
+import molgenisMenu from '../../../src/exampleMenu'
 jest.mock('@molgenis/molgenis-api-client')
 
 describe('NavBar.vue', () => {

@@ -79,6 +79,7 @@ import { href } from '../href'
 import DropDownItems from './DropDownItems'
 import languageRepository from '../repository/LanguageRepository'
 import languageService from '../service/LanguageService'
+import eventUtilService from '../service/EventUtilService'
 
 export default Vue.extend({
   name: 'NavBar',
@@ -147,30 +148,7 @@ export default Vue.extend({
         }
       }
     },
-    /**
-     * Custom simplified debounce method based on lodash, to save bundle size.
-     *
-     * Returns a function, that, as long as it continues to be invoked, will not
-     * be triggered. The function will be called after it stops being called for
-     * N milliseconds.
-     */
-    debounce (func, wait) {
-      let timeout
-      return () => {
-        let context = this
-        let args = arguments
-        let later = () => {
-          timeout = null
-          func.apply(context, args)
-        }
-        let callNow = !timeout
-        clearTimeout(timeout)
-        timeout = setTimeout(later, wait)
-        if (callNow) {
-          func.apply(context, args)
-        }
-      }
-    },
+    debounce: eventUtilService.debounce,
     getPixelValue (sourceObject, propertyName) {
       return parseInt(sourceObject.getPropertyValue(propertyName), 10)
     }
