@@ -1,4 +1,4 @@
-import { MolgenisMenu } from '@/types'
+import { MolgenisMenu } from './types'
 
 const molgenisMenu: MolgenisMenu = {
   menu: {
