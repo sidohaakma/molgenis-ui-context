@@ -5,7 +5,7 @@ describe('EventUtilService', () => {
     it('should should wait n milliseconds before calling the given function again', () => {
       let callCount = 0
       const myFunc = () => {
-        callCount = callCount  + 1
+        callCount = callCount + 1
       }
       const debounced = EventUtilService.debounce(myFunc, 10)
       debounced()

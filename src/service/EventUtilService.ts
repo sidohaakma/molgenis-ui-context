@@ -16,7 +16,7 @@ export default {
         func.apply(context, args)
       }
       let callNow = !timeout
-      if(timeout !== null) {
+      if (timeout !== null) {
         clearTimeout(timeout)
       }
       timeout = setTimeout(later, wait)

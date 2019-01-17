@@ -32,14 +32,16 @@ describe('NavBar.vue', () => {
     it('should keep showing the hamburger', () => {
       const wrapper = shallowMount(NavBar, {
         propsData: { molgenisMenu },
-        data: () => { return {
-          selectedLanguage: 'en',
-          languages: ['en'],
-          helperStyle: undefined,
-          expectedNavHeight: 45,
-          showHamburger: false,
-          dynamicHamburgerBreakpoint: 5000
-        }}
+        data: () => {
+          return {
+            selectedLanguage: 'en',
+            languages: ['en'],
+            helperStyle: undefined,
+            expectedNavHeight: 45,
+            showHamburger: false,
+            dynamicHamburgerBreakpoint: 5000
+          }
+        }
       })
 
       // @ts-ignore
@@ -55,14 +57,16 @@ describe('NavBar.vue', () => {
     it('should show the hamburger', () => {
       const wrapper = shallowMount(NavBar, {
         propsData: { molgenisMenu },
-        data: () => { return {
-          selectedLanguage: 'en',
-          languages: ['en'],
-          helperStyle: undefined,
-          expectedNavHeight: 45,
-          showHamburger: false,
-          dynamicHamburgerBreakpoint: 5000
-        }}
+        data: () => {
+          return {
+            selectedLanguage: 'en',
+            languages: ['en'],
+            helperStyle: undefined,
+            expectedNavHeight: 45,
+            showHamburger: false,
+            dynamicHamburgerBreakpoint: 5000
+          }
+        }
       })
 
       // @ts-ignore
@@ -78,14 +82,16 @@ describe('NavBar.vue', () => {
     it('should keep not showing the hamburger', () => {
       const wrapper = shallowMount(NavBar, {
         propsData: { molgenisMenu },
-        data: () => { return {
-          selectedLanguage: 'en',
-          languages: ['en'],
-          helperStyle: undefined,
-          expectedNavHeight: 0,
-          showHamburger: false,
-          dynamicHamburgerBreakpoint: 5000
-        }}
+        data: () => {
+          return {
+            selectedLanguage: 'en',
+            languages: ['en'],
+            helperStyle: undefined,
+            expectedNavHeight: 0,
+            showHamburger: false,
+            dynamicHamburgerBreakpoint: 5000
+          }
+        }
       })
 
       // @ts-ignore
@@ -94,5 +100,4 @@ describe('NavBar.vue', () => {
       expect(wrapper.vm.showHamburger).toBe(false)
     })
   })
-
 })

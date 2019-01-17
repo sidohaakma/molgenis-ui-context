@@ -1,12 +1,14 @@
 <template>
-  <nav class="navbar navbar-light bg-light" :class="{ 'navbar-expand-md': !showHamburger }" >
+  <nav class="navbar navbar-light bg-light" :class="{ 'navbar-expand-md': !showHamburger }">
 
-    <a v-if="molgenisMenu.navBarLogo" class="navbar-brand" :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
-      <img :src="molgenisMenu.navBarLogo" height="20">
+    <a v-if="molgenisMenu.navBarLogo" class="navbar-brand"
+       :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
+      <img :src="molgenisMenu.navBarLogo" class="molgenis-navbar-logo">
     </a>
     <a v-else class="navbar-brand" href="#"></a>
 
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content"
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+            data-target="#navbar-content"
             aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,7 +26,8 @@
           </li>
 
           <li v-else-if="item.id !== 'home'" class="nav-item dropdown" :key="item.id">
-            <a class="nav-link dropdown-toggle" :id="item.id" data-toggle="dropdown" aria-haspopup="true"
+            <a class="nav-link dropdown-toggle" :id="item.id" data-toggle="dropdown"
+               aria-haspopup="true"
                aria-expanded="false">
               {{ item.label }}
             </a>
@@ -34,7 +37,8 @@
       </ul>
 
       <ul class="navbar-nav justify-content">
-        <li v-if="molgenisMenu.authenticated && languages.length > 1 && selectedLanguage" class="nav-item">
+        <li v-if="molgenisMenu.authenticated && languages.length > 1 && selectedLanguage"
+            class="nav-item">
           <form id="language-form" class="navbar-form">
             <select class="nav-link" v-model="selectedLanguage.id" @change="handleLanguageSelect">
               <option
@@ -59,7 +63,8 @@
 
         <li class="nav-item">
           <form id="logout-form" class="form-inline" method="post" action="/logout">
-            <button v-if="molgenisMenu.authenticated" id="signout-button" type="button" class="btn btn-outline-secondary"
+            <button v-if="molgenisMenu.authenticated" id="signout-button" type="button"
+                    class="btn btn-outline-secondary"
                     @click="logout">
               Sign out
             </button>
@@ -133,7 +138,8 @@ export default Vue.extend({
       })
     },
     getClientWidth () {
-      return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+      return window.innerWidth || document.documentElement.clientWidth ||
+          document.body.clientWidth
     },
     handleResize () {
       if (this.showHamburger) {
@@ -164,7 +170,8 @@ export default Vue.extend({
     window.addEventListener('resize', this.debounce(this.handleResize, 100))
 
     if (this.molgenisMenu.authenticated) {
-      Promise.all([languageRepository.getActivelangueges(), languageRepository.getSelectedlanguegeCode()]).then((results) => {
+      Promise.all([languageRepository.getActivelangueges(),
+        languageRepository.getSelectedlanguegeCode()]).then((results) => {
         this.languages = results[0]
         this.selectedLanguage = languageService.selectedLanguage(this.languages, results[1])
       })
@@ -178,3 +185,8 @@ export default Vue.extend({
   }
 })
 </script>
+<style>
+  .molgenis-navbar-logo {
+    height: 2rem;
+  }
+</style>
