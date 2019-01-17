@@ -3,7 +3,7 @@
 
     <a v-if="molgenisMenu.navBarLogo" class="navbar-brand"
        :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
-      <img :src="molgenisMenu.navBarLogo" id="molgenis-navbar-logo">
+      <img :src="molgenisMenu.navBarLogo" class="molgenis-navbar-logo">
     </a>
     <a v-else class="navbar-brand" href="#"></a>
 
@@ -151,7 +151,7 @@ export default Vue.extend({
 })
 </script>
 <style>
-  #molgenis-navbar-logo {
-    height: 30px;
+  .molgenis-navbar-logo {
+    height: 2rem;
   }
 </style>
