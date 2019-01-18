@@ -1,18 +1,20 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <nav class="navbar navbar-light bg-light" :class="{ 'navbar-expand-md': !showHamburger }">
 
-    <a v-if="molgenisMenu.navBarLogo" class="navbar-brand" :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
-      <img :src="molgenisMenu.navBarLogo" height="20">
+    <a v-if="molgenisMenu.navBarLogo" class="navbar-brand"
+       :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
+      <img :src="molgenisMenu.navBarLogo" class="molgenis-navbar-logo">
     </a>
     <a v-else class="navbar-brand" href="#"></a>
 
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content"
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+            data-target="#navbar-content"
             aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbar-content">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto" ref="mgNavBarNav">
 
         <template v-for="item in molgenisMenu.menu.items">
           <li :key="item.id" v-if="item.type === 'plugin' && item.id !== 'home'"
@@ -24,7 +26,8 @@
           </li>
 
           <li v-else-if="item.id !== 'home'" class="nav-item dropdown" :key="item.id">
-            <a class="nav-link dropdown-toggle" :id="item.id" data-toggle="dropdown" aria-haspopup="true"
+            <a class="nav-link dropdown-toggle" :id="item.id" data-toggle="dropdown"
+               aria-haspopup="true"
                aria-expanded="false">
               {{ item.label }}
             </a>
@@ -34,14 +37,15 @@
       </ul>
 
       <ul class="navbar-nav justify-content">
-        <li v-if="molgenisMenu.authenticated && languages.length > 1" class="nav-item">
+        <li v-if="molgenisMenu.authenticated && languages.length > 1 && selectedLanguage"
+            class="nav-item">
           <form id="language-form" class="navbar-form">
-            <select class="nav-link" v-model="selectedLanguage" @change="handleLanguageSelect">
+            <select class="nav-link" v-model="selectedLanguage.id" @change="handleLanguageSelect">
               <option
                 v-for="language in languages"
                 :key="language.id"
                 :value="language.id"
-                :selected="language.id === selectedLanguage"
+                :selected="language.id === selectedLanguage.id"
               >
                 {{ language.label }}
               </option>
@@ -59,7 +63,8 @@
 
         <li class="nav-item">
           <form id="logout-form" class="form-inline" method="post" action="/logout">
-            <button v-if="molgenisMenu.authenticated" id="signout-button" type="button" class="btn btn-outline-secondary"
+            <button v-if="molgenisMenu.authenticated" id="signout-button" type="button"
+                    class="btn btn-outline-secondary"
                     @click="logout">
               Sign out
             </button>
@@ -77,7 +82,9 @@ import Vue from 'vue'
 import { MolgenisMenu } from '../types'
 import { href } from '../href'
 import DropDownItems from './DropDownItems'
-import api from '@molgenis/molgenis-api-client'
+import languageRepository from '../repository/LanguageRepository'
+import languageService from '../service/LanguageService'
+import eventUtilService from '../service/EventUtilService'
 
 export default Vue.extend({
   name: 'NavBar',
@@ -95,7 +102,10 @@ export default Vue.extend({
         display: 'inline-block',
         height: '100%',
         verticalAlign: 'middle'
-      } : undefined
+      } : undefined,
+      expectedNavHeight: null,
+      showHamburger: false,
+      dynamicHamburgerBreakpoint: null
     }
   },
   computed: {
@@ -123,25 +133,60 @@ export default Vue.extend({
       document.getElementById('logout-form').submit()
     },
     handleLanguageSelect () {
-      api.post('/plugin/useraccount/language/update?languageCode=' + this.selectedLanguage).then(() => {
+      languageRepository.setSelectedLanguage(this.selectedLanguage.id).then(() => {
         location.reload(true)
       })
+    },
+    getClientWidth () {
+      return window.innerWidth || document.documentElement.clientWidth ||
+          document.body.clientWidth
+    },
+    handleResize () {
+      if (this.showHamburger) {
+        if (this.getClientWidth() > this.dynamicHamburgerBreakpoint) {
+          this.showHamburger = false
+        }
+      } else {
+        const actualNavHeight = this.$refs.mgNavBarNav.clientHeight
+        if (actualNavHeight > this.expectedNavHeight) {
+          this.dynamicHamburgerBreakpoint = this.getClientWidth()
+          this.showHamburger = true
+        }
+      }
+    },
+    debounce: eventUtilService.debounce,
+    getPixelValue (sourceObject, propertyName) {
+      return parseInt(sourceObject.getPropertyValue(propertyName), 10)
     }
   },
   mounted () {
+    const links = this.$refs.mgNavBarNav.getElementsByClassName('nav-link')
+    const linkStyleObject = window.getComputedStyle(links[0])
+    const lineHeight = this.getPixelValue(linkStyleObject, 'line-height')
+    const paddingTop = this.getPixelValue(linkStyleObject, 'padding-top')
+    const paddingBottom = this.getPixelValue(linkStyleObject, 'padding-bottom')
+    this.expectedNavHeight = lineHeight + paddingTop + paddingBottom
+
+    window.addEventListener('resize', this.debounce(this.handleResize, 100))
+
     if (this.molgenisMenu.authenticated) {
-      api.get('/api/v2/sys_Language?q=active==true').then(response => {
-        this.languages = response.items.map(item => {
-          const language = { id: item.code, label: item.name }
-          if (item.code === response.meta.languageCode) {
-            this.selectedLanguage = language.id
-          }
-          return language
-        })
-      }, error => {
-        console.error(error)
+      Promise.all([languageRepository.getActivelangueges(),
+        languageRepository.getSelectedlanguegeCode()]).then((results) => {
+        this.languages = results[0]
+        this.selectedLanguage = languageService.selectedLanguage(this.languages, results[1])
       })
     }
+  },
+  updated () {
+    this.handleResize()
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.handleResize)
   }
 })
 </script>
+<style>
+  .molgenis-navbar-logo {
+    height: 2rem;
+  }
+</style>
