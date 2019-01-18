@@ -2,6 +2,9 @@
 
 Top level navigation menu for use in molgenis user interface.
 
+## Changelog
+Details changes for each release are documented in the [CHANGELOG.md](https://github.com/molgenis/molgenis-ui-context/blob/master/CHANGELOG.md).
+
 ## Project setup
 ```
 yarn install
