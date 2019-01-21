@@ -10,7 +10,7 @@ exports[`NavBar.vue should match the snapshot 1`] = `
         </a>
         <drop-down-items-stub parent="[object Object]" items="[object Object],[object Object]" depth="0"></drop-down-items-stub>
       </li>
-      <li class="nav-item"><a href="/menu/main/navigator" class="nav-link">
+      <li class="nav-item active"><a href="/menu/main/navigator" class="nav-link">
           Navigator
         </a></li>
       <li class="nav-item"><a href="/menu/main/dataexplorer?selectedEntityType=sys_md_EntityType" class="nav-link">
