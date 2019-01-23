@@ -124,7 +124,7 @@ export default Vue.extend({
   methods: {
     href,
     isSelectedPlugin (plugin) {
-      return plugin === this.selectedPlugin
+      return plugin === this.molgenisMenu.selectedPlugin
     },
     logout () {
       if (this.logoutFunction) {
