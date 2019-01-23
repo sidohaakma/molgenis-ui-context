@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Removed
+### Changed
+### Fixed
+
+## [0.3.0] - 2019-01-23
+### Added
 - Dynamic (via js) menu collapse breakpoints (hamburger menu).
 ### Removed
 ### Changed
