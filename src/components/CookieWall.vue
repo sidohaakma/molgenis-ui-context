@@ -30,6 +30,11 @@ export default Vue.extend({
       hostname: window.location.hostname
     }
   },
+  created: function () {
+    if (document.cookie.indexOf(this.cookieName + '=true') !== -1) {
+      this.show = false
+    }
+  },
   methods: {
     acceptCookies: function () {
       const date = new Date()
