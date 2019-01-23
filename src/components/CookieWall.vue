@@ -13,8 +13,9 @@
 
 <script>
 import Vue from 'vue'
+import { setCookie, getCookie } from '../service/CookieService'
 
-const cookieAliveTime = 365 * 24 * 60 * 60 * 1000 // 365 days
+const cookieAliveTime = 365 // in days
 
 export default Vue.extend({
   name: 'CookieWall',
@@ -31,15 +32,13 @@ export default Vue.extend({
     }
   },
   created: function () {
-    if (document.cookie.indexOf(this.cookieName + '=true') !== -1) {
+    if (getCookie(this.cookieName) === 'true') {
       this.show = false
     }
   },
   methods: {
     acceptCookies: function () {
-      const date = new Date()
-      date.setTime(date.getTime() + cookieAliveTime)
-      document.cookie = this.cookieName + '=true; expires=' + date.toGMTString() + '; path=/; secure: false'
+      setCookie(this.cookieName, 'true', cookieAliveTime)
       this.show = false
     }
   }
