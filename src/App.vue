@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <CookieWall />
+    <CookieWall cookieName="permissionforcookies" />
     <NavBar :molgenis-menu="molgenisMenu"></NavBar>
     <img alt="Vue logo" src="./assets/logo.png">
   </div>

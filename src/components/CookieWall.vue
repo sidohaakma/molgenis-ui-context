@@ -18,6 +18,12 @@ const cookieAliveTime = 365 * 24 * 60 * 60 * 1000 // 365 days
 
 export default Vue.extend({
   name: 'CookieWall',
+  props: {
+    cookieName: {
+      type: String,
+      default: 'permissionforcookies'
+    }
+  },
   data: function () {
     return {
       show: true,
@@ -28,7 +34,7 @@ export default Vue.extend({
     acceptCookies: function () {
       const date = new Date()
       date.setTime(date.getTime() + cookieAliveTime)
-      document.cookie = 'permissionforcookies=true; expires=' + date.toGMTString() + '; path=/; secure: false'
+      document.cookie = this.cookieName + '=true; expires=' + date.toGMTString() + '; path=/; secure: false'
       this.show = false
     }
   }

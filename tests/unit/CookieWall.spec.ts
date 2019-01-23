@@ -14,4 +14,13 @@ describe('CookieWall', () => {
     button.trigger('click')
     expect(document.cookie).toBe('permissionforcookies=true')
   })
+
+  const wrapper2 = shallowMount(CookieWall)
+  wrapper2.setProps({cookieName:'testCustomCookieName'})
+
+  it('can set a custom cookie name', () => {
+    const button = wrapper2.find('button')
+    button.trigger('click')
+    expect(document.cookie.indexOf("testCustomCookieName=true") != -1 ).toBe(true )
+  })
 })
