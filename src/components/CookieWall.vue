@@ -13,7 +13,7 @@
 
 <script>
 import Vue from 'vue'
-import { setCookie, getCookie } from '../service/CookieService'
+import { setCookie, findValueInList } from '../service/CookieService'
 
 const cookieAliveTime = 365 // in days
 
@@ -32,7 +32,7 @@ export default Vue.extend({
     }
   },
   created: function () {
-    if (getCookie(this.cookieName) === 'true') {
+    if (findValueInList(document.cookie, this.cookieName) === 'true') {
       this.show = false
     }
   },

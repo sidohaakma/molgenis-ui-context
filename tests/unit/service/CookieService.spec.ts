@@ -1,4 +1,4 @@
-import { setCookie, getCookie, deleteCookie } from '../../../src/service/CookieService'
+import {setCookie, deleteCookie, findValueInList} from '../../../src/service/CookieService'
 
 describe('CookieService', () => {
   describe('setCookie', () => {
@@ -7,18 +7,24 @@ describe('CookieService', () => {
       expect(document.cookie).toBe('test=true')
     })
   }),
-  describe('getCookie', () => {
-    it('should get cookie data', () => {
-      setCookie('test2','test2', 1)
-      expect(getCookie('test')).toBe('true');
-      expect(getCookie('test2')).toBe('test2');
-    })
-  }),
   describe('deleteCookie', () => {
     it('should remove a cookie', () => {
-      expect(getCookie('test')).toBe('true');
+      expect(findValueInList(document.cookie, 'test')).toBe('true');
       deleteCookie('test');
-      expect(getCookie('test')).toBe(null);
+      expect(findValueInList(document.cookie, 'test')).toBe(null);
+    })
+  })
+  describe('findValueInList', () => {
+    it('should extract value from semicolon separated list', () => {
+      const listA:string = "key1=value1;key2=value2; key3=value3"
+      const listB:string = "key4:value4;key5=value5;"
+
+      expect(findValueInList(listA, "key1")).toBe('value1')
+      expect(findValueInList(listA, "key2")).toBe('value2')
+      expect(findValueInList(listA, "key3")).toBe('value3')
+      expect(findValueInList(listA, "key4")).toBe(null)
+      expect(findValueInList(listB, "key4")).toBe(null)
+      expect(findValueInList(listB, "key5")).toBe('value5')
     })
   })
 })
