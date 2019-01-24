@@ -1,4 +1,4 @@
-import {setCookie, deleteCookie, findValueInList} from '../../../src/service/CookieService'
+import { setCookie, deleteCookie, findValueInList } from '../../../src/service/CookieService'
 
 describe('CookieService', () => {
   describe('setCookie', () => {

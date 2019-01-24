@@ -9,12 +9,12 @@ export function setCookie (name:string, value:string, days:number) {
   document.cookie = name + "=" + value + ';path=/;secure: false;expires=' + expirationDate.toUTCString()
 }
 
-export function deleteCookie (name:string){
+export function deleteCookie (name:string) {
   setCookie(name, '', -1)
 }
 
 // Extracts a value by key in a "key=value; key=value2;" list
-export function findValueInList(haystack:string, needle:string):string|null{
+export function findValueInList(haystack:string, needle:string):string|null {
   const capturingGroupOffset:number = 2
   let value:RegExpMatchArray|null = haystack.match('(^|;) ?' + needle + '=([^;]*)(;|$)')
   return value ? value[capturingGroupOffset] : null
