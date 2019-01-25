@@ -137,7 +137,7 @@ const molgenisMenu: MolgenisMenu = {
             label: 'Security Manager'
           }
         ]
-      },
+      }
     ]
   },
   navBarLogo: 'Logo_Black_Small.png',
