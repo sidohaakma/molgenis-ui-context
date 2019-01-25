@@ -6,10 +6,9 @@ module.exports = {
     browser
       .url(process.env.VUE_DEV_SERVER_URL)
       .waitForElementVisible('#app', 5000)
-      .resizeWindow(2560, 1600)
-      .waitForElementVisible('.navbar-expand-md', 5000)
       .assert.elementPresent('.navbar')
       .assert.elementPresent('.navbar-brand')
+      .assert.elementPresent('.navbar-expand-md')
       .assert.elementPresent('.nav-item.active')
       .assert.containsText('.active', 'Navigator')
       .resizeWindow(200, 400)

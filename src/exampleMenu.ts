@@ -88,48 +88,6 @@ const molgenisMenu: MolgenisMenu = {
       },
       {
         type: 'menu',
-        id: 'plugins',
-        label: 'Plugins',
-        items: [
-          {
-            type: 'plugin',
-            id: 'searchAll',
-            label: 'Search all data'
-          },
-          {
-            type: 'plugin',
-            id: 'swagger',
-            label: 'API documentation'
-          },
-          {
-            type: 'plugin',
-            id: 'appmanager',
-            label: 'App manager'
-          },
-          {
-            type: 'plugin',
-            id: 'feedback',
-            label: 'Feedback'
-          },
-          {
-            type: 'plugin',
-            id: 'jobs',
-            label: 'Job overview'
-          },
-          {
-            type: 'plugin',
-            id: 'questionnaires',
-            label: 'Questionnaires'
-          },
-          {
-            type: 'plugin',
-            id: 'scripts',
-            label: 'Scripts'
-          }
-        ]
-      },
-      {
-        type: 'menu',
         id: 'admin',
         label: 'Admin',
         items: [
@@ -180,11 +138,6 @@ const molgenisMenu: MolgenisMenu = {
           }
         ]
       },
-      {
-        type: 'plugin',
-        id: 'useraccount',
-        label: 'Account'
-      }
     ]
   },
   navBarLogo: 'Logo_Black_Small.png',
