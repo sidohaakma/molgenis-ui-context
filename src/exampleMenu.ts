@@ -187,7 +187,7 @@ const molgenisMenu: MolgenisMenu = {
       }
     ]
   },
-  navBarLogo: '/img/logo_molgenis_small.png',
+  navBarLogo: 'Logo_Black_Small.png',
   selectedPlugin: 'navigator',
   authenticated: true,
   loginHref: '/login',
