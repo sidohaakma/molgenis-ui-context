@@ -4,6 +4,7 @@
 module.exports = {
   'display navbar test': browser => {
     browser
+      .resizeWindow(2560, 1600)
       .url(process.env.VUE_DEV_SERVER_URL)
       .waitForElementVisible('#app', 5000)
       .assert.elementPresent('.navbar')
