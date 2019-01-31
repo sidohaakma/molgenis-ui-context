@@ -2,6 +2,10 @@
 // http://nightwatchjs.org/guide#usage
 
 module.exports = {
+  tags: ['UiContext'],
+  before: function (browser) {
+    browser.resizeWindow(1024, 786)
+  },
   'display navbar test': browser => {
     browser
       .url(process.env.VUE_DEV_SERVER_URL)
@@ -14,6 +18,14 @@ module.exports = {
       .resizeWindow(200, 400)
       .waitForElementVisible('.navbar-toggler-icon', 5000)
       .assert.cssClassNotPresent('.navbar.navbar-light.bg-light', '.navbar-expand-md')
+      .end()
+  },
+  'display footer test': browser => {
+    browser
+      .url(process.env.VUE_DEV_SERVER_URL)
+      .waitForElementVisible('#app', 5000)
+      .assert.elementPresent('.footer')
+      .assert.containsText('footer > div > div:nth-child(1)', 'some additionalMessage')
       .end()
   },
   'show cookiewall and hide on click': browser => {
