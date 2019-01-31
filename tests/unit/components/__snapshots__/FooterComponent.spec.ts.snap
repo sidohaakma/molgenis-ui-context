@@ -3,9 +3,7 @@
 exports[`FooterComponent.vue should match the snapshot 1`] = `
 <footer class="footer">
   <div class="container font-italic text-muted text-center">
-    <div>
-      some additionalMessage
-    </div>
+    <div class="mg-additional-footer-message">some <a href="https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us">additional</a>Message</div>
     <div>
       This database was generated using the open source <a href="http://www.molgenis.org">MOLGENIS database generator </a> <span>
         3.2.1-DEV

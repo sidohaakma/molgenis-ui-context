@@ -1,8 +1,7 @@
 <template>
   <footer class="footer">
     <div class="container font-italic text-muted text-center">
-      <div v-if="additionalMessage">
-        {{additionalMessage}}
+      <div class="mg-additional-footer-message" v-if="additionalMessage" v-html="additionalMessage">
       </div>
       <div>
         This database was generated using the open source <a :href="molgenisSite">MOLGENIS database generator </a>
