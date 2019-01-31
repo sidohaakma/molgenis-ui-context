@@ -10,4 +10,11 @@ describe('FooterComponent.vue', () => {
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('should render additionalMessage as html', () => {
+    const wrapper = shallowMount(FooterComponent, {
+      propsData: { molgenisFooter }
+    })
+    expect(wrapper.find('.mg-additional-footer-message').text()).toBe('some additionalMessage')
+  })
 })
