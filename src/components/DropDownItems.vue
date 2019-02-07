@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { href } from '../href'
 import Vue from 'vue'
 
