@@ -11,12 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [0.5.0] - 2019-03-18
+### Added
+- Footer component
+
 ## [0.4.0] - 2019-01-24
 ### Added
 - Cookiewall component
-### Removed
-### Changed
-### Fixed
 
 ## [0.3.0] - 2019-01-23
 ### Added
