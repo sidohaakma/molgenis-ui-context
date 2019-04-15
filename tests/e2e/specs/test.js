@@ -35,7 +35,7 @@ module.exports = {
       .assert.elementPresent('.jumbotron')
       .assert.elementPresent('.jumbotron button.btn')
       .click('.jumbotron button.btn')
-      .pause(600)
+      .pause(1000)
       .assert.elementNotPresent('.jumbotron')
       .assert.elementNotPresent('.jumbotron button.btn')
       .end()
@@ -51,6 +51,21 @@ module.exports = {
       .waitForElementVisible('#app', 5000)
       .assert.elementNotPresent('.jumbotron')
       .assert.elementNotPresent('.jumbotron button.btn')
+      .end()
+  },
+  'show logo above menu bar': browser => {
+    browser
+      .url(process.env.VUE_DEV_SERVER_URL)
+      .waitForElementVisible('#app', 5000)
+      .assert.elementPresent('#top-logo-vue-banner')
+      .assert.elementPresent('#logo-top')
+      .getElementSize('#logo-top', function (size) {
+        this.assert.strictEqual(size.value.width, 460)
+      })
+      .resizeWindow(200, 400)
+      .getElementSize('#logo-top', function (size) {
+        this.assert.strictEqual(size.value.width, 360)
+      })
       .end()
   }
 }
