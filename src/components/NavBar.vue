@@ -104,6 +104,7 @@ export default Vue.extend({
         verticalAlign: 'middle'
       } : undefined,
       expectedNavHeight: null,
+      wrapMargin: null,
       showHamburger: false,
       dynamicHamburgerBreakpoint: null
     }
@@ -148,7 +149,8 @@ export default Vue.extend({
         }
       } else {
         const actualNavHeight = this.$refs.mgNavBarNav.clientHeight
-        if (actualNavHeight > this.expectedNavHeight) {
+        const heightBreakPoint = this.expectedNavHeight + this.wrapMargin
+        if (actualNavHeight > heightBreakPoint) {
           this.dynamicHamburgerBreakpoint = this.getClientWidth()
           this.showHamburger = true
         }
@@ -165,6 +167,7 @@ export default Vue.extend({
     const lineHeight = this.getPixelValue(linkStyleObject, 'line-height')
     const paddingTop = this.getPixelValue(linkStyleObject, 'padding-top')
     const paddingBottom = this.getPixelValue(linkStyleObject, 'padding-bottom')
+    this.wrapMargin = Math.round(lineHeight / 2)
     this.expectedNavHeight = lineHeight + paddingTop + paddingBottom
 
     window.addEventListener('resize', this.debounce(this.handleResize, 100))
