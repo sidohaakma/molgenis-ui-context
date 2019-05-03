@@ -140,10 +140,12 @@ const molgenisMenu: MolgenisMenu = {
       }
     ]
   },
-  navBarLogo: 'Logo_Black_Small.png',
+  navBarLogo: 'https://www.molgenis.org/assets/img/logo_green.png',
   selectedPlugin: 'navigator',
   authenticated: true,
   loginHref: '/login',
+  topLogo: 'https://www.molgenis.org/assets/img/logo_green.png',
+  topLogoMaxHeight: 150,
   helpLink: {
     label: 'Help',
     href: 'https://molgenis.gitbooks.io/molgenis/content/'
