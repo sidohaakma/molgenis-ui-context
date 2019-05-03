@@ -32,7 +32,7 @@
   "devDependencies": {
     "@types/jest": "^23.3.13",
     "@vue/cli-plugin-babel": "^3.3.0",
-    "@vue/cli-plugin-e2e-nightwatch": "^3.3.0",
+    "@vue/cli-plugin-e2e-nightwatch": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
     "@vue/cli-plugin-typescript": "^3.3.0",
     "@vue/cli-plugin-unit-jest": "^3.3.0",
