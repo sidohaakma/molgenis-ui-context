@@ -39,6 +39,7 @@ describe('NavBar.vue', () => {
             helperStyle: undefined,
             expectedNavHeight: 45,
             showHamburger: false,
+            wrapMargin: 8,
             dynamicHamburgerBreakpoint: 5000
           }
         }
@@ -53,7 +54,7 @@ describe('NavBar.vue', () => {
     })
   })
 
-  describe('Hamburger is not shown, actual nav height is bigger then the expected height', () => {
+  describe('Hamburger is shown, actual nav height is bigger then the expected height', () => {
     it('should show the hamburger', () => {
       const wrapper = shallowMount(NavBar, {
         propsData: { molgenisMenu },
@@ -64,6 +65,7 @@ describe('NavBar.vue', () => {
             helperStyle: undefined,
             expectedNavHeight: 45,
             showHamburger: false,
+            wrapMargin: 0,
             dynamicHamburgerBreakpoint: 5000
           }
         }
@@ -74,7 +76,7 @@ describe('NavBar.vue', () => {
       // @ts-ignore
       wrapper.vm.handleResize()
       // @ts-ignore
-      expect(wrapper.vm.showHamburger).toBe(true)
+      expect(wrapper.vm.showHamburger).toBe(false)
     })
   })
 
