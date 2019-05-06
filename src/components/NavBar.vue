@@ -1,7 +1,7 @@
 <template>
   <div class="molgenis-header-container">
     <div v-if="molgenisMenu.topLogo" id="top-logo-vue-banner" :style="topLogoVueBannerStyle" class="bg-light">
-      <span :style="helperStyle"></span>
+      <span class="mg-top-logo-helper"></span>
       <a href="/"><img id="logo-top" class="logo-top" :src="molgenisMenu.topLogo" alt="" border="0" :style="topLogoStyle"></a>
     </div>
 
@@ -105,11 +105,6 @@ export default Vue.extend({
     return {
       selectedLanguage: null,
       languages: [],
-      helperStyle: this.molgenisMenu.topLogo ? {
-        display: 'inline-block',
-        height: '100%',
-        verticalAlign: 'middle'
-      } : undefined,
       expectedNavHeight: null,
       wrapMargin: null,
       showHamburger: false,
@@ -202,5 +197,11 @@ export default Vue.extend({
 
   .logo-top {
     max-width: 90%;
+  }
+
+  .mg-top-logo-helper {
+    display: 'inline-block';
+    height: '100%';
+    vertical-align: 'middle'
   }
 </style>

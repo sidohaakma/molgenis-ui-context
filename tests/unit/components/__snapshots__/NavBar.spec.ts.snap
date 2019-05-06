@@ -2,7 +2,7 @@
 
 exports[`NavBar.vue should match the snapshot 1`] = `
 <div class="molgenis-header-container">
-  <div id="top-logo-vue-banner" class="bg-light" style="height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span> <a href="/"><img id="logo-top" src="https://www.molgenis.org/assets/img/logo_green.png" alt="" border="0" class="logo-top" style="max-height: 150px; vertical-align: middle;"></a></div>
+  <div id="top-logo-vue-banner" class="bg-light" style="height: 150px;"><span class="mg-top-logo-helper"></span> <a href="/"><img id="logo-top" src="https://www.molgenis.org/assets/img/logo_green.png" alt="" border="0" class="logo-top" style="max-height: 150px; vertical-align: middle;"></a></div>
   <nav class="navbar navbar-light bg-light navbar-expand-md"><a href="/menu/main/home" class="navbar-brand"><img src="https://www.molgenis.org/assets/img/logo_green.png" class="molgenis-navbar-logo"></a> <button type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler collapsed"><span class="navbar-toggler-icon"></span></button>
     <div id="navbar-content" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
