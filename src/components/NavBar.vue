@@ -200,8 +200,8 @@ export default Vue.extend({
   }
 
   .mg-top-logo-helper {
-    display: 'inline-block';
-    height: '100%';
-    vertical-align: 'middle'
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
   }
 </style>
