@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="mg-page">
+    <cookie-wall cookieName="permissionforcookies" />
     <header-component :molgenis-menu="molgenisMenu"/>
     <main class="mg-page-content">
       <div class="container">
@@ -20,8 +21,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
+import CookieWall from './components/CookieWall.vue'
 import HeaderComponent from './components/HeaderComponent.vue'
 import FooterComponent from './components/FooterComponent.vue'
 import menu from './exampleMenu'
@@ -29,7 +31,7 @@ import molgenisFooter from './exampleFooter'
 
 export default Vue.extend({
   name: 'app',
-  components: { HeaderComponent, FooterComponent },
+  components: { HeaderComponent, FooterComponent, CookieWall },
   data () {
     return {
       molgenisMenu: menu,

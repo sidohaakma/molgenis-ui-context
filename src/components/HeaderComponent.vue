@@ -1,8 +1,10 @@
 <template>
   <header>
-      <header-image v-if="molgenisMenu.topLogo" :imgSrc="molgenisMenu.topLogo" :imgMaxHeight="molgenisMenu.topLogoMaxHeight"/>
-      <cookie-wall cookieName="permissionforcookies" />
-      <nav-bar :molgenis-menu="molgenisMenu" />
+    <div class="mg-sticky-header-padder" :style="{ height: headerHeight + 'px' }"></div>
+    <div class="fixed-top" ref="stickyHeader">
+        <header-image v-if="molgenisMenu.topLogo" :imgSrc="molgenisMenu.topLogo" :imgMaxHeight="molgenisMenu.topLogoMaxHeight"/>
+        <nav-bar :molgenis-menu="molgenisMenu" />
+    </div>
   </header>
 </template>
 
@@ -10,16 +12,28 @@
 import { MolgenisMenu } from '../types'
 import HeaderImage from './HeaderImage.vue'
 import NavBar from './NavBar.vue'
-import CookieWall from './CookieWall.vue'
 
 export default {
   name: 'HeaderComponent',
-  components: { NavBar, CookieWall, HeaderImage },
+  components: { NavBar, HeaderImage },
   props: {
     molgenisMenu: MolgenisMenu
   },
-  data: function () {
-    return {}
+  data () {
+    return {
+      headerHeight: null
+    }
+  },
+  mounted: function () {
+    this.headerHeight = this.$refs.stickyHeader.clientHeight
   }
 }
 </script>
+
+<style>
+    .mg-sticky-header-padder {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+</style>
