@@ -1,6 +1,10 @@
 # molgenis-ui-context
 
-Top level navigation menu for use in molgenis user interface.
+Collection of top level page components for use in molgenis interface
+
+- Navigation bar
+- Footer compoment
+- Cookie wall 
 
 ## Changelog
 Details changes for each release are documented in the [CHANGELOG.md](https://github.com/molgenis/molgenis-ui-context/blob/master/CHANGELOG.md).

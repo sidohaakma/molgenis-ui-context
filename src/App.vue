@@ -1,9 +1,23 @@
 <template>
-  <div id="app">
-    <CookieWall cookieName="permissionforcookies" />
-    <NavBar :molgenis-menu="molgenisMenu"></NavBar>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <FooterComponent :molgenisFooter="molgenisFooter"/>
+  <div id="app" class="mg-page">
+    <main class="mg-page-content">
+      <CookieWall cookieName="permissionforcookies" />
+      <NavBar :molgenis-menu="molgenisMenu"></NavBar>
+      <div class="container">
+          <h1 class="mt-5">Page context demo!</h1>
+          <div class="row">
+              <div class="col-md-9 col-lg-6">
+                  <hr>
+                  <p>
+                  Giant leaps in science don't just appear. they're usually build on the work of others.
+                  To accelerate scientific discovery we help teams to make their data open and FAIR to further the open exchange
+                  of knowledge.
+                  </p>
+              </div>
+          </div>
+      </div>
+    </main>
+    <FooterComponent :molgenisFooter="molgenisFooter" class="bg-light"/>
   </div>
 </template>
 
