@@ -16,8 +16,8 @@ describe('HeaderComponent.vue', () => {
     })
 
     wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.mg-sticky-header-padder').html()).toContain('height: 0px;')
-        done()
-      })
+      expect(wrapper.find('.mg-sticky-header-padder').html()).toContain('height: 0px;')
+      done()
+    })
   })
 })

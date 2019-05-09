@@ -124,7 +124,7 @@ describe('NavBar.vue', () => {
 
       // @ts-ignore
       wrapper.destroy()
-      expect(removeEventListenerSpy).toHaveBeenCalled();
+      expect(removeEventListenerSpy).toHaveBeenCalled()
     })
   })
 })
