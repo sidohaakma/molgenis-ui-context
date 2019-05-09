@@ -1,10 +1,5 @@
 <template>
   <div class="molgenis-header-container">
-    <div v-if="molgenisMenu.topLogo" id="top-logo-vue-banner" :style="topLogoVueBannerStyle" class="bg-light">
-      <span class="mg-top-logo-helper"></span>
-      <a href="/"><img id="logo-top" class="logo-top" :src="molgenisMenu.topLogo" alt="" border="0" :style="topLogoStyle"></a>
-    </div>
-
     <nav class="navbar navbar-light bg-light" :class="{ 'navbar-expand-md': !showHamburger }">
 
       <a v-if="molgenisMenu.navBarLogo" class="navbar-brand"
@@ -111,19 +106,6 @@ export default Vue.extend({
       dynamicHamburgerBreakpoint: null
     }
   },
-  computed: {
-    topLogoStyle () {
-      return this.molgenisMenu.topLogo ? {
-        maxHeight: this.molgenisMenu.topLogoMaxHeight + 'px',
-        verticalAlign: 'middle'
-      } : undefined
-    },
-    topLogoVueBannerStyle () {
-      return this.molgenisMenu.topLogo ? {
-        height: this.molgenisMenu.topLogoMaxHeight + 'px'
-      } : undefined
-    }
-  },
   methods: {
     href,
     isSelectedPlugin (plugin) {
@@ -193,15 +175,5 @@ export default Vue.extend({
 <style>
   .molgenis-navbar-logo {
     height: 2rem;
-  }
-
-  .logo-top {
-    max-width: 90%;
-  }
-
-  .mg-top-logo-helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
   }
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="mg-page">
+    <cookie-wall cookieName="permissionforcookies" />
+    <header-component :molgenis-menu="molgenisMenu"/>
     <main class="mg-page-content">
-      <CookieWall cookieName="permissionforcookies" />
-      <NavBar :molgenis-menu="molgenisMenu"></NavBar>
       <div class="container">
           <h1 class="mt-5">Page context demo!</h1>
           <div class="row">
@@ -17,21 +17,21 @@
           </div>
       </div>
     </main>
-    <FooterComponent :molgenisFooter="molgenisFooter" class="bg-light"/>
+    <footer-component :molgenisFooter="molgenisFooter" class="bg-light"/>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
-import NavBar from './components/NavBar.vue'
 import CookieWall from './components/CookieWall.vue'
+import HeaderComponent from './components/HeaderComponent.vue'
 import FooterComponent from './components/FooterComponent.vue'
 import menu from './exampleMenu'
 import molgenisFooter from './exampleFooter'
 
 export default Vue.extend({
   name: 'app',
-  components: { NavBar, CookieWall, FooterComponent },
+  components: { HeaderComponent, FooterComponent, CookieWall },
   data () {
     return {
       molgenisMenu: menu,
