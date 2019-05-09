@@ -1,8 +1,8 @@
 <template>
-    <div id="top-logo-vue-banner" :style="topLogoVueBannerStyle" class="bg-light">
+    <div id="top-logo-vue-banner" :style="{ height: imgMaxHeight + 'px' }" class="bg-light">
       <span class="mg-top-logo-helper" />
       <a href="/">
-        <img id="logo-top" class="logo-top" alt="" :src="imgSrc" :style="imgStyle" />
+        <img id="logo-top" class="logo-top" alt="" :src="imgSrc" :style="{ maxHeight: imgMaxHeight + 'px' }" />
       </a>
     </div>
 </template>
@@ -20,18 +20,6 @@ export default Vue.extend({
     imgMaxHeight: {
       type: Number,
       required: true
-    }
-  },
-  computed: {
-    imgStyle () {
-      return {
-        maxHeight: this.imgMaxHeight + 'px'
-      }
-    },
-    topLogoVueBannerStyle () {
-      return {
-        height: this.imgMaxHeight + 'px'
-      }
     }
   }
 })

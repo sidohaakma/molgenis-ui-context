@@ -25,15 +25,18 @@ export default {
     }
   },
   mounted: function () {
-    this.headerHeight = this.$refs.stickyHeader.clientHeight
+    // Use nextTick to wait for chikderen to render as per vue api guide
+    this.$nextTick(() => {
+      this.headerHeight = this.$refs.stickyHeader.clientHeight
+    })
   }
 }
 </script>
 
 <style>
-    .mg-sticky-header-padder {
-        margin: 0;
-        padding: 0;
-        border: 0;
-    }
+  .mg-sticky-header-padder {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
 </style>

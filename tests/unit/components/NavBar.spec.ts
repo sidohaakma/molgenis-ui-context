@@ -102,4 +102,29 @@ describe('NavBar.vue', () => {
       expect(wrapper.vm.showHamburger).toBe(false)
     })
   })
+
+  describe('When the navbar is destroyed', () => {
+    it('the event listener should be removed', () => {
+      const removeEventListenerSpy = jest.fn()
+      // @ts-ignore
+      global.removeEventListener = removeEventListenerSpy
+      const wrapper = shallowMount(NavBar, {
+        propsData: { molgenisMenu },
+        data: () => {
+          return {
+            selectedLanguage: 'en',
+            languages: ['en'],
+            helperStyle: undefined,
+            expectedNavHeight: 0,
+            showHamburger: false,
+            dynamicHamburgerBreakpoint: 100
+          }
+        }
+      })
+
+      // @ts-ignore
+      wrapper.destroy()
+      expect(removeEventListenerSpy).toHaveBeenCalled();
+    })
+  })
 })
