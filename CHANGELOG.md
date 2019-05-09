@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0]
+### Added
+- Sticky header that includes header image and navbar
+### Changed
+- Toplogo image is removed from navbar ( now in header)
+### Breaking
+- Footer component css positioning is removed, footer is now sticky ( via molgenis sticky-footer.css and the .footer class) 
+
 ## [0.5.2]
 ### Changed
 - Be more lenient when checking for line wrap on navbar ( work around for ie issue in molgenis) https://github.com/molgenis/molgenis/issues/8486
