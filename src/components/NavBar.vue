@@ -165,14 +165,15 @@ export default Vue.extend({
   },
   mounted () {
     const links = this.$refs.mgNavBarNav.getElementsByClassName('nav-link')
-    const linkStyleObject = window.getComputedStyle(links[0])
-    const lineHeight = this.getPixelValue(linkStyleObject, 'line-height')
-    const paddingTop = this.getPixelValue(linkStyleObject, 'padding-top')
-    const paddingBottom = this.getPixelValue(linkStyleObject, 'padding-bottom')
-    this.wrapMargin = Math.round(lineHeight / 2)
-    this.expectedNavHeight = lineHeight + paddingTop + paddingBottom
-
-    window.addEventListener('resize', this.debounce(this.handleResize, 100))
+    if (links.length) {
+      const linkStyleObject = window.getComputedStyle(links[0])
+      const lineHeight = this.getPixelValue(linkStyleObject, 'line-height')
+      const paddingTop = this.getPixelValue(linkStyleObject, 'padding-top')
+      const paddingBottom = this.getPixelValue(linkStyleObject, 'padding-bottom')
+      this.wrapMargin = Math.round(lineHeight / 2)
+      this.expectedNavHeight = lineHeight + paddingTop + paddingBottom
+      window.addEventListener('resize', this.debounce(this.handleResize, 100))
+    }
 
     if (this.molgenisMenu.authenticated) {
       Promise.all([languageRepository.getActivelangueges(),
@@ -183,7 +184,9 @@ export default Vue.extend({
     }
   },
   updated () {
-    this.handleResize()
+    if (this.expectedNavHeight) {
+      this.handleResize()
+    }
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.handleResize)
