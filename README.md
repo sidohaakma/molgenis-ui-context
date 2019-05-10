@@ -2,12 +2,62 @@
 
 Collection of top level page components for use in molgenis interface
 
-- Navigation bar
+- Header component
+  - Header image component
+  - Navbar
 - Footer compoment
 - Cookie wall 
 
+note: HeaderImageComponent may also be used as separate components
+
 ## Changelog
 Details changes for each release are documented in the [CHANGELOG.md](https://github.com/molgenis/molgenis-ui-context/blob/master/CHANGELOG.md).
+
+## Components
+
+#### Header component
+
+Sticky header that contains HeaderImageComponent and Navbar.
+Takes a molgenis menu object as property and renders a menu and top logo image ( if set molgenis menu object). Header is fixed at the top of the page.
+
+#### Footer compoment
+
+Sticky footer, takes a molgenis footer object as property and renders a footer.
+Footers is rendered at the botom of the window and pushed down by the content.
+
+#### Cookie wall
+Shows cookie warning if 'permissionforcookies' cookie is not set. If user accepts cookies the 'permissionforcookies' is set. 
+
+## Page layout
+
+      ------------------------------------------
+      | page                                   |
+      |  ------------------------------------  |
+      |  | sticky-header                    |  |
+      |  | -------------------------------  |  |
+      |  | | header-image                |  |  |
+      |  | |                             |  |  |
+      |  | -------------------------------  |  |
+      |  | -------------------------------  |  |
+      |  | | nav-bar                     |  |  |
+      |  | -------------------------------  |  |
+      |  ------------------------------------  |
+      |  ------------------------------------  |
+      |  | content                          |  |
+      |  |                                  |  |
+      |  |                                  |  |
+      |  |                                  |  |
+      |  |                                  |  |
+      |  |                                  |  |
+      |  |                                  |  |
+      |  ------------------------------------  |
+      |  ------------------------------------  |
+      |  |footer                            |  |
+      |  |                                  |  |
+      |  |                                  |  |
+      |  ------------------------------------  |
+      ------------------------------------------
+ 
 
 ## Project setup
 ```

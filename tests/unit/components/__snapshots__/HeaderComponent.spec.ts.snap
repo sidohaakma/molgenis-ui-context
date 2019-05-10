@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderComponent.vue should match the snapshot 1`] = `
+<header>
+  <div class="mg-sticky-header-padder"></div>
+  <div class="fixed-top">
+    <header-image-stub imgsrc="https://www.molgenis.org/assets/img/logo_green.png" imgmaxheight="150"></header-image-stub>
+    <nav-bar-stub molgenismenu="[object Object]"></nav-bar-stub>
+  </div>
+</header>
+`;
