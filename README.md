@@ -15,17 +15,17 @@ Details changes for each release are documented in the [CHANGELOG.md](https://gi
 
 ## Components
 
-####Header component
+#### Header component
 
 Sticky header that contains HeaderImageComponent and Navbar.
 Takes a molgenis menu object as property and renders a menu and top logo image ( if set molgenis menu object). Header is fixed at the top of the page.
 
-####Footer compoment
+#### Footer compoment
 
 Sticky footer, takes a molgenis footer object as property and renders a footer.
 Footers is rendered at the botom of the window and pushed down by the content.
 
-####Cookie wall
+#### Cookie wall
 Shows cookie warning if 'permissionforcookies' cookie is not set. If user accepts cookies the 'permissionforcookies' is set. 
 
 ## Page layout
