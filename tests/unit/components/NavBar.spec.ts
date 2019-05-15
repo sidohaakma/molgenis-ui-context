@@ -127,4 +127,32 @@ describe('NavBar.vue', () => {
       expect(removeEventListenerSpy).toHaveBeenCalled()
     })
   })
+
+  describe('When not signed in', () => {
+    it('no errors should be generated', () => {
+      const menu = {
+        menu: {
+          type: 'menu',
+          id: 'main',
+          label: 'Home',
+          items: [
+            {
+              type: 'plugin',
+              id: 'home',
+              label: 'Home'
+            }
+          ]
+        },
+        navBarLogo: 'https://www.molgenis.org/assets/img/logo_green.png',
+        authenticated: true,
+        loginHref: '/login',
+        helpLink: {
+          label: 'Help',
+          href: 'https://molgenis.gitbooks.io/molgenis/content/'
+        }
+      }
+
+      shallowMount(NavBar, { propsData: { molgenisMenu: menu } })
+    })
+  })
 })
