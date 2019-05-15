@@ -152,7 +152,7 @@ describe('NavBar.vue', () => {
         }
       }
 
-      shallowMount(NavBar, { propsData: { molgenisMenu } })
+      shallowMount(NavBar, { propsData: { molgenisMenu: menu } })
     })
   })
 })
