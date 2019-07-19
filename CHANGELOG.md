@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/molgenis/molgenis-ui-context/compare/v1.1.3...v1.2.0) (2019-07-19)
+
+
+### Features
+
+* Add PageComponent ([d18cbb7](https://github.com/molgenis/molgenis-ui-context/commit/d18cbb7))
+
 ## [1.1.3](https://github.com/molgenis/molgenis-ui-context/compare/v1.1.2...v1.1.3) (2019-07-19)
 
 
