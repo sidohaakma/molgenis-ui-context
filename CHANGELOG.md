@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/molgenis/molgenis-ui-context/compare/v1.1.2...v1.1.3) (2019-07-19)
+
+
+### Bug Fixes
+
+* ci build ([9b6c813](https://github.com/molgenis/molgenis-ui-context/commit/9b6c813))
+
 ## [1.1.2](https://github.com/molgenis/molgenis-ui-context/compare/v1.1.1...v1.1.2) (2019-05-31)
 
 
