@@ -43,8 +43,6 @@ module.exports = {
           additionalMessage: 'some <a href="https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us">additional</a>Message',
           appVersion: 'some-app-version',
           molgenisSite: 'http://www.molgenis.org',
-          pubmed1: 'https://www.ncbi.nlm.nih.gov/pubmed/21210979',
-          pubmed2: 'https://www.ncbi.nlm.nih.gov/pubmed/17297480',
           showCookieWall: false,
           authenticated: true,
           loginHref: '/login',
