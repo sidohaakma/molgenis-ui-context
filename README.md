@@ -26,6 +26,14 @@ example:
 
 note: HeaderImageComponent may also be used as separate components
 
+## Instalation
+
+- Use yarn/npm to include the @molgenis-ui-context module
+- Include sticky-footer.css when using PageComponent or FooterComponent
+- Include boostrap, jquery and poppers.js if you want to use the bootstrap navbar ( included in the page) 
+    - How to include using vue cli 3 https://developpaper.com/using-jquery-and-bootstrap-in-vue-cli-3-0/
+
+
 ## Changelog
 Details changes for each release are documented in the [CHANGELOG.md](https://github.com/molgenis/molgenis-ui-context/blob/master/CHANGELOG.md).
 
