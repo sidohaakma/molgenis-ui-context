@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/molgenis/molgenis-ui-context/compare/v1.2.1...v1.3.0) (2019-08-21)
+
+
+### Features
+
+* **module.ts:** added module.ts to expose compiled components ([41159ec](https://github.com/molgenis/molgenis-ui-context/commit/41159ec))
+
 ## [1.2.1](https://github.com/molgenis/molgenis-ui-context/compare/v1.2.0...v1.2.1) (2019-08-09)
 
 
