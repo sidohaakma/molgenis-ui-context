@@ -3,28 +3,28 @@
 
 # molgenis-ui-context
 
-Collection of top level page components for use in molgenis interface
+Collection of top level page components for use in MOLGENIS interface
 
-- Page component (Renders full molgnis page and handles comunication with server via 'context' endpoint)
+- Page component (Renders full MOLGENIS page and handles comunication with server via 'context' endpoint)
   - Cookie wall
   - Header component
   - Footer compoment
 
-example:
+## Usage
 ```
 <page-component>
-    <p>I am a molgenis page with, header and footer</p>
+    <p>I am a MOLGENIS page with, header and footer</p>
 </page-component>
 ```
-
-
 - Header component (Allows for more controller passing in menu and settings as props)
   - Header image component
   - Navbar
 - Footer compoment (Allows for more controller passing settings as props)
 - Cookie wall 
 
-note: HeaderImageComponent may also be used as separate components
+> note: HeaderImageComponent may also be used as separate components
+
+
 
 ## Changelog
 Details changes for each release are documented in the [CHANGELOG.md](https://github.com/molgenis/molgenis-ui-context/blob/master/CHANGELOG.md).
@@ -32,13 +32,11 @@ Details changes for each release are documented in the [CHANGELOG.md](https://gi
 ## Components
 
 #### Header component
-
 Sticky header that contains HeaderImageComponent and Navbar.
-Takes a molgenis menu object as property and renders a menu and top logo image ( if set molgenis menu object). Header is fixed at the top of the page.
+Takes a MOLGENIS menu object as property and renders a menu and top logo image ( if set MOLGENIS menu object). Header is fixed at the top of the page.
 
 #### Footer compoment
-
-Sticky footer, takes a molgenis footer object as property and renders a footer.
+Sticky footer, takes a MOLGENIS footer object as property and renders a footer.
 Footers is rendered at the botom of the window and pushed down by the content.
 
 #### Cookie wall
@@ -90,7 +88,7 @@ yarn run serve
 yarn run build
 ```
 
-The default build target is set to build the navBar components as library
+The default build target is set to build the all tlhe components as library
 
 ### Run your tests
 ```
