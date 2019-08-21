@@ -1,7 +1,7 @@
 {
   "name": "@molgenis/molgenis-ui-context",
   "license": "LGPL-3.0+",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name context src/module.ts",
@@ -60,6 +60,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
+    "cz-conventional-changelog": "2.1.0",
     "eslint": "^5.12.1",
     "eslint-plugin-vue": "^5.1.0",
     "geckodriver": "^1.14.1",
@@ -128,5 +129,10 @@
       "<rootDir>/node_modules/(?!@molgenis/molgenis-api-client)"
     ],
     "testURL": "http://localhost/"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

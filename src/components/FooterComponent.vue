@@ -16,8 +16,7 @@
         App version: {{appVersion}}.
       </div>
       <p>
-        Please cite <a :href="pubmed1">Swertz et al (2010)</a> or <a :href="pubmed2">Swertz &amp; Jansen(2007)</a> on
-        use.
+        Please cite <a href="https://www.ncbi.nlm.nih.gov/pubmed/30165396">Van der Velde et al (2018)</a>, <a href="https://www.ncbi.nlm.nih.gov/pubmed/21210979">Swertz et al (2010)</a> or <a href="https://www.ncbi.nlm.nih.gov/pubmed/17297480">Swertz &amp; Jansen(2007)</a> on use.
       </p>
     </div>
   </footer>
@@ -37,9 +36,7 @@ export default {
       version: this.molgenisFooter.version,
       buildDate: this.molgenisFooter.buildDate,
       appVersion: this.molgenisFooter.appVersion,
-      molgenisSite: this.molgenisFooter.molgenisSite,
-      pubmed1: this.molgenisFooter.pubmed1,
-      pubmed2: this.molgenisFooter.pubmed2
+      molgenisSite: this.molgenisFooter.molgenisSite
     }
   }
 }

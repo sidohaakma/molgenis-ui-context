@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/molgenis/molgenis-ui-context/compare/v1.2.0...v1.2.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* **citation:** add citation ([dec6b1d](https://github.com/molgenis/molgenis-ui-context/commit/dec6b1d)), closes [#8423](https://github.com/molgenis/molgenis-ui-context/issues/8423)
+
 # [1.2.0](https://github.com/molgenis/molgenis-ui-context/compare/v1.1.3...v1.2.0) (2019-07-19)
 
 
