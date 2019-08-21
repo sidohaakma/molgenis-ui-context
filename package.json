@@ -4,14 +4,14 @@
   "version": "1.2.1",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name navBar src/components/NavBar.vue",
+    "build": "vue-cli-service build --target lib --name context src/module.ts",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
     "preversion": "yarn install; yarn test:unit; yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox",
     "postversion": "yarn build"
   },
-  "main": "dist/NavBar.umd.js",
+  "main": "dist/context.umd.js",
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",

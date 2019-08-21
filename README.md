@@ -3,36 +3,72 @@
 
 # molgenis-ui-context
 
-Collection of top level page components for use in molgenis interface
+Collection of top level page components for use in MOLGENIS interface
 
-- Page component (Renders full molgnis page and handles comunication with server via 'context' endpoint)
+- Page component (Renders full MOLGENIS page and handles comunication with server via 'context' endpoint)
   - Cookie wall
   - Header component
   - Footer compoment
 
-example:
-```
+## Installation
+- Use yarn/npm to include the @molgenis-ui-context module
+- Include sticky-footer.css when using PageComponent or FooterComponent
+- Include boostrap, jquery and poppers.js if you want to use the bootstrap navbar ( included in the page) 
+  - How to include using vue cli 3 https://developpaper.com/using-jquery-and-bootstrap-in-vue-cli-3-0/
+
+## Usage
+You can use this library in 2 different ways. You use the source components from ui-context.
+
+```html
 <page-component>
-    <p>I am a molgenis page with, header and footer</p>
+    <p>I am a MOLGENIS page with, header and footer</p>
 </page-component>
 ```
-
-
 - Header component (Allows for more controller passing in menu and settings as props)
   - Header image component
   - Navbar
 - Footer compoment (Allows for more controller passing settings as props)
 - Cookie wall 
 
-note: HeaderImageComponent may also be used as separate components
+> HeaderImageComponent may also be used as separate components
+> Please be sure to build your project and include  the peer dependencies (check [installation](#installation)).
 
-## Instalation
+The second way is to import the umd's, but Vue and the peer dependencies are packaged as well. This means you have to import the umd modules in a separate Vue in the page.
 
-- Use yarn/npm to include the @molgenis-ui-context module
-- Include sticky-footer.css when using PageComponent or FooterComponent
-- Include boostrap, jquery and poppers.js if you want to use the bootstrap navbar ( included in the page) 
-    - How to include using vue cli 3 https://developpaper.com/using-jquery-and-bootstrap-in-vue-cli-3-0/
+```html
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
 
+<script>
+  requirejs.config({
+    baseUrl: '/@molgenis-ui/context/dist/'
+  });
+
+  requirejs(["context.umd", "https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"], function(context, Vue) {
+    new Vue({
+        render: createElement => {
+          const propsData = {
+            props: {
+              molgenisMenu: {
+                menu: ${menu},
+                <#if app_settings.logoTopHref??>topLogo: '${app_settings.logoTopHref}', </#if>
+                <#if app_settings.logoTopHref??>topLogoMaxHeight: ${app_settings.logoTopMaxHeight}, </#if>
+                <#if app_settings.logoNavBarHref?has_content>navBarLogo: '${app_settings.logoNavBarHref}', </#if>
+                <#if plugin_id??>selectedPlugin: '${plugin_id}', </#if>
+                authenticated: ${authenticated?c},
+                loginHref: '/login',
+                helpLink: {
+                label: 'Help',
+                href: 'https://molgenis.gitbooks.io/molgenis/content/'
+              }
+            }
+          }
+        };
+        return createElement(context.default.HeaderComponent, propsData);
+      }
+    }).$mount('#molgenis-menu')
+  })
+</script>
+```
 
 ## Changelog
 Details changes for each release are documented in the [CHANGELOG.md](https://github.com/molgenis/molgenis-ui-context/blob/master/CHANGELOG.md).
@@ -40,13 +76,11 @@ Details changes for each release are documented in the [CHANGELOG.md](https://gi
 ## Components
 
 #### Header component
-
 Sticky header that contains HeaderImageComponent and Navbar.
-Takes a molgenis menu object as property and renders a menu and top logo image ( if set molgenis menu object). Header is fixed at the top of the page.
+Takes a MOLGENIS menu object as property and renders a menu and top logo image (if set MOLGENIS menu object). Header is fixed at the top of the page).
 
 #### Footer compoment
-
-Sticky footer, takes a molgenis footer object as property and renders a footer.
+Sticky footer, takes a MOLGENIS footer object as property and renders a footer.
 Footers is rendered at the botom of the window and pushed down by the content.
 
 #### Cookie wall
@@ -98,7 +132,7 @@ yarn run serve
 yarn run build
 ```
 
-The default build target is set to build the navBar components as library
+The default build target is set to build the all tlhe components as library
 
 ### Run your tests
 ```
