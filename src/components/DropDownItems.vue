@@ -21,9 +21,8 @@
 
 <script>
 import { href } from '../href'
-import Vue from 'vue'
 
-export default Vue.extend({
+export default {
   name: 'drop-down-items',
   props: {
     parent: {
@@ -43,7 +42,7 @@ export default Vue.extend({
   methods: {
     href
   }
-})
+}
 </script>
 
 <style>

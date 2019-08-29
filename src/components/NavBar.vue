@@ -88,7 +88,7 @@ import languageRepository from '../repository/LanguageRepository'
 import languageService from '../service/LanguageService'
 import eventUtilService from '../service/EventUtilService'
 
-export default Vue.extend({
+export default {
   name: 'NavBar',
   props: {
     molgenisMenu: MolgenisMenu
@@ -173,7 +173,7 @@ export default Vue.extend({
   beforeDestroy () {
     window.removeEventListener('resize', this.handleResize)
   }
-})
+}
 </script>
 <style>
   .molgenis-navbar-logo {
