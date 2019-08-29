@@ -12,12 +12,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import { setCookie, findValueInList } from '../service/CookieService'
 
 const cookieAliveTime = 365 // in days
 
-export default Vue.extend({
+export default {
   name: 'CookieWall',
   props: {
     cookieName: {
@@ -42,7 +41,7 @@ export default Vue.extend({
       this.show = false
     }
   }
-})
+}
 </script>
 
 <style scoped>
