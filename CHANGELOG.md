@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/molgenis/molgenis-ui-context/compare/v1.3.1...v1.3.2) (2019-08-30)
+
+
+### Bug Fixes
+
+* add hover style to dropdown toggle ([f00e00a](https://github.com/molgenis/molgenis-ui-context/commit/f00e00a))
+
 ## [1.3.1](https://github.com/molgenis/molgenis-ui-context/compare/v1.3.0...v1.3.1) (2019-08-29)
 
 
