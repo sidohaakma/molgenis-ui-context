@@ -175,8 +175,11 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
   .molgenis-navbar-logo {
     height: 2rem;
+  }
+  .dropdown-toggle:hover {
+    cursor: pointer;
   }
 </style>
