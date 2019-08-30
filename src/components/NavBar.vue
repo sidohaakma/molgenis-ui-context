@@ -175,6 +175,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
   .molgenis-navbar-logo {
     height: 2rem;
