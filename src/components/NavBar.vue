@@ -6,7 +6,7 @@
          :href="`/menu/main/${href(molgenisMenu.menu.items[0])}`">
         <img :src="molgenisMenu.navBarLogo" class="molgenis-navbar-logo">
       </a>
-      <a v-else class="navbar-brand" href="#">Home</a>
+      <a v-else class="navbar-brand" href="/">Home</a>
 
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
               data-target="#navbar-content"
