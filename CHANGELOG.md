@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/molgenis/molgenis-ui-context/compare/v1.3.3...v1.3.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* fix: fallback home link ([656022e](https://github.com/molgenis/molgenis-ui-context/commit/656022e))
+
 ## [1.3.3](https://github.com/molgenis/molgenis-ui-context/compare/v1.3.2...v1.3.3) (2019-09-26)
 
 
