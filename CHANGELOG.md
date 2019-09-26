@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/molgenis/molgenis-ui-context/compare/v1.3.2...v1.3.3) (2019-09-26)
+
+
+### Bug Fixes
+
+* Fix(NavBar): Fix molgenis #8681 , Missing fallback label ([df0f61a](https://github.com/molgenis/molgenis-ui-context/commit/df0f61a))
+
 ## [1.3.2](https://github.com/molgenis/molgenis-ui-context/compare/v1.3.1...v1.3.2) (2019-08-30)
 
 
