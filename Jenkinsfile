@@ -33,7 +33,9 @@ pipeline {
                 container('node') {
                     sh "yarn install"
                     sh "yarn test:unit"
-                    sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+                    // Todo reenable safari when bug is fixed, https://bugs.webkit.org/show_bug.cgi?id=202589
+                    // sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+                    sh "yarn test:e2e --env ci_chrome,ci_ie11,ci_firefox"
                 }
             }
             post {
@@ -53,7 +55,9 @@ pipeline {
                 container('node') {
                     sh "yarn install"
                     sh "yarn test:unit"
-                    sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+                    // Todo reenable safari when bug is fixed, https://bugs.webkit.org/show_bug.cgi?id=202589
+                    // sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+                    sh "yarn test:e2e --env ci_chrome,ci_ie11,ci_firefox"
                 }
             }
             post {
@@ -78,7 +82,9 @@ pipeline {
                 container('node') {
                     sh "yarn install"
                     sh "yarn test:unit"
-                    sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+                    // Todo reenable safari when bug is fixed, https://bugs.webkit.org/show_bug.cgi?id=202589
+                    // sh "yarn test:e2e --env ci_chrome,ci_safari,ci_ie11,ci_firefox"
+                    sh "yarn test:e2e --env ci_chrome,ci_ie11,ci_firefox"
                 }
             }
             post {
