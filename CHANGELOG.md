@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/molgenis/molgenis-ui-context/compare/v1.3.3...v1.4.0) (2019-10-31)
+
+
+### Features
+
+* Add event containing context data to PageComponent ([0571db9](https://github.com/molgenis/molgenis-ui-context/commit/0571db9))
+* trigger feat release ([149ec3e](https://github.com/molgenis/molgenis-ui-context/commit/149ec3e))
+* trigger release afer release was missed due to failing safari selenium test issue ([cdcf283](https://github.com/molgenis/molgenis-ui-context/commit/cdcf283))
+
 ## [1.3.4](https://github.com/molgenis/molgenis-ui-context/compare/v1.3.3...v1.3.4) (2019-09-26)
 
 
