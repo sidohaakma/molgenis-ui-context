@@ -77,7 +77,7 @@ Details changes for each release are documented in the [CHANGELOG.md](https://gi
 
 #### Page Component
 Combination of 'Cookie wall', 'Header component', 'Footer compoment'.
-Emits 'contextLoaded' event containing contextData as json when data is returned form backend. 
+Emits 'contextLoaded' event containing contextData when data is returned form backend. 
 
 #### Header component
 Sticky header that contains HeaderImageComponent and Navbar.
