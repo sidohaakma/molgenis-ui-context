@@ -1,5 +1,5 @@
 <template>
-  <page-component id="app">
+  <page-component id="app" v-on:contextLoaded="handleContextLoaded">
       <div class="container">
           <h1 class="mt-5">Page context demo!</h1>
           <div class="row">
@@ -22,6 +22,11 @@ import PageComponent from './components/PageComponent.vue'
 
 export default Vue.extend({
   name: 'app',
-  components: { PageComponent }
+  components: { PageComponent },
+  methods: {
+    handleContextLoaded (context) {
+      console.log(context)
+    }
+  }
 })
 </script>

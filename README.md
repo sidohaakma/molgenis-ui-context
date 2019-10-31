@@ -75,6 +75,10 @@ Details changes for each release are documented in the [CHANGELOG.md](https://gi
 
 ## Components
 
+#### Page Component
+Combination of 'Cookie wall', 'Header component', 'Footer compoment'.
+Emits 'contextLoaded' event containing contextData as json when data is returned form backend. 
+
 #### Header component
 Sticky header that contains HeaderImageComponent and Navbar.
 Takes a MOLGENIS menu object as property and renders a menu and top logo image (if set MOLGENIS menu object). Header is fixed at the top of the page).
