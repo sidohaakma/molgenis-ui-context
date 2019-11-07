@@ -2,49 +2,35 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 # molgenis-ui-context
-
 Collection of top level page components for use in molgenis interface
-
-- Page component (Renders full molgnis page and handles comunication with server via 'context' endpoint)
-  - Cookie wall
-  - Header component
-  - Footer compoment
-
-example:
-```
-<page-component>
-    <p>I am a molgenis page with, header and footer</p>
-</page-component>
-```
-
-
-- Header component (Allows for more controller passing in menu and settings as props)
-  - Header image component
-  - Navbar
-- Footer compoment (Allows for more controller passing settings as props)
-- Cookie wall 
-
-note: HeaderImageComponent may also be used as separate components
 
 ## Changelog
 Details changes for each release are documented in the [CHANGELOG.md](https://github.com/molgenis/molgenis-ui-context/blob/master/CHANGELOG.md).
 
 ## Components
+There are three components which are wrapped in a parent component:
+- [Header component](#header-component)
+  - HeaderImageComponent
+  - Navbar
+- [Footer component](#footer-component)
+- [Cookie wall](#cookie-wall)
 
-#### Header component
+Wrapper component:
+- [Page component](page-component)
 
+### Header component
 Sticky header that contains HeaderImageComponent and Navbar.
-Takes a molgenis menu object as property and renders a menu and top logo image ( if set molgenis menu object). Header is fixed at the top of the page.
+Takes a MOLGENIS menu object as property and renders a menu and top logo image (if set MOLGENIS menu object). Header is fixed at the top of the page.
 
-#### Footer compoment
-
+### Footer compoment
 Sticky footer, takes a molgenis footer object as property and renders a footer.
 Footers is rendered at the botom of the window and pushed down by the content.
 
-#### Cookie wall
+### Cookie wall
 Shows cookie warning if 'permissionforcookies' cookie is not set. If user accepts cookies the 'permissionforcookies' is set. 
 
-## Page layout
+### Page component
+Consists of all the components mentioned above. The page layout is shown below.
 
       ------------------------------------------
       | page                                   |
@@ -74,6 +60,23 @@ Shows cookie warning if 'permissionforcookies' cookie is not set. If user accept
       |  ------------------------------------  |
       ------------------------------------------
  
+## Usage
+
+### Adding peer dependencies
+When you include the seperate components or the page components you need to include the peerDependencies of the molgenis-ui-context.
+You can do this by adding the peerDependencies in your target project.
+
+```bash
+yarn add bootstrap@4.3.1
+yarn add popper.js@0.14
+yarn add jquery@3.3
+```
+
+```main.ts / main.js
+import 'bootstrap'
+```
+
+Your set!
 
 ## Project setup
 ```
