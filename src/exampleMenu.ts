@@ -35,6 +35,11 @@ const molgenisMenu: MolgenisMenu = {
       },
       {
         type: 'plugin',
+        id: 'navigator1',
+        label: 'Sido'
+      },
+      {
+        type: 'plugin',
         id: 'dataexplorer',
         label: 'Data Explorer',
         params: 'selectedEntityType=sys_md_EntityType'

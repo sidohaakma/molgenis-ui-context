@@ -17,8 +17,8 @@
       <div class="collapse navbar-collapse" id="navbar-content">
         <ul class="navbar-nav mr-auto" ref="mgNavBarNav">
 
-          <template v-for="item in molgenisMenu.menu.items">
-            <li :key="item.id" v-if="item.type === 'plugin' && item.id !== 'home'"
+          <template v-for="(item, index) in molgenisMenu.menu.items">
+            <li :key="index" v-if="item.type === 'plugin' && item.id !== 'home'"
                 :class="['nav-item', {'active': isSelectedPlugin(item.id)}]">
 
               <a class="nav-link" :href="`/menu/main/${href(item)}`">
@@ -26,7 +26,7 @@
               </a>
             </li>
 
-            <li v-else-if="item.id !== 'home'" class="nav-item dropdown" :key="item.id">
+            <li v-else-if="item.id !== 'home'" class="nav-item dropdown" :key="index">
               <a class="nav-link dropdown-toggle" :id="item.id" data-toggle="dropdown"
                  aria-haspopup="true"
                  aria-expanded="false">
